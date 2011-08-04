@@ -2,6 +2,6 @@
 {
     public interface IPublisher
     {
-        void Publish(object message);
+        void Publish<TMessage>(TMessage message);
     }
 }
