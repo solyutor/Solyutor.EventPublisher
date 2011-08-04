@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="IAssignee.cs" />
     <Compile Include="IPublisher.cs" />
-    <Compile Include="ISubscriber.cs" />
+    <Compile Include="IListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,8 +2,8 @@
 {
     public interface IAssignee
     {
-        void Subscribe(object subcriber);
+        void Subscribe(object listener);
 
-        void Unsubscribe(object subcriber);
+        void Unsubscribe(object listener);
     }
 }
