@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAssignee.cs" />
+    <Compile Include="Impl\IListenerSource.cs" />
+    <Compile Include="Impl\IPublishWay.cs" />
     <Compile Include="IPublisher.cs" />
     <Compile Include="IListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
