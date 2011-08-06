@@ -10,7 +10,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
         [Test]
         public void ResolveListenersFor_should_return_empty_collection_if_no_listners()
         {
-            IEnumerable<IListener<TestMessage>> listeners = new SimpleAssignee().ResolveListenersFor<TestMessage>();
+            var listeners = new SimpleAssignee().ResolveListenersFor<TestMessage>();
 
             Assert.That(listeners, Is.Empty);
         }
@@ -22,7 +22,19 @@ namespace Solyutor.EventPublisher.Tests.Impl
             var listener = new TestListener();
             assignee.Subscribe(listener);
 
-            IEnumerable<IListener<TestMessage>> listeners = assignee.ResolveListenersFor<TestMessage>();
+            var listeners = assignee.ResolveListenersFor<TestMessage>();
+
+            Assert.That(listeners, Has.Member(listener));
+        }
+
+        [Test]
+        public void Subscribe_will_not_add_same_object_twice()
+        {
+            var assignee = new SimpleAssignee();
+            var listener = new TestListener();
+            assignee.Subscribe(listener);
+
+            var listeners = assignee.ResolveListenersFor<TestMessage>();
 
             Assert.That(listeners, Has.Member(listener));
         }
@@ -33,10 +45,17 @@ namespace Solyutor.EventPublisher.Tests.Impl
             var assignee = new SimpleAssignee();
             var listener = new TestListener();
             assignee.Subscribe(listener);
-            assignee.Unsubscribe(listener);
-            IEnumerable<IListener<TestMessage>> listeners = assignee.ResolveListenersFor<TestMessage>();
+            assignee.Subscribe(listener);
+            
+            var listeners = new List<IListener<TestMessage>>(assignee.ResolveListenersFor<TestMessage>());
 
-            Assert.That(listeners, Has.No.Member(listener));
+            Assert.That(listeners.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Unsubscribe_if_not_subscribed_will_be_skipped_silently()
+        {
+            new SimpleAssignee().Unsubscribe(new TestListener());
         }
     }
 

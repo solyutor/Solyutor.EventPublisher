@@ -5,11 +5,11 @@ namespace Solyutor.EventPublisher.Impl
 {
     public class SimpleAssignee : IAssignee, IListenerSource
     {
-        private readonly IList<object> _listeners;
+        private readonly ISet<object> _listeners;
 
         public SimpleAssignee()
         {
-            _listeners = new List<object>();
+            _listeners = new HashSet<object>();
         }
 
         public void Subscribe(object listener)
