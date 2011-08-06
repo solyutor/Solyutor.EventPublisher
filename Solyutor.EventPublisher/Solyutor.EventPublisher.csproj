@@ -44,6 +44,7 @@
     <Compile Include="Impl\IListenerSource.cs" />
     <Compile Include="Impl\IPublishWay.cs" />
     <Compile Include="Impl\SimpleAssignee.cs" />
+    <Compile Include="Impl\SimplePublishWay.cs" />
     <Compile Include="IPublisher.cs" />
     <Compile Include="IListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
