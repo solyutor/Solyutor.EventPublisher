@@ -8,28 +8,67 @@ namespace Solyutor.EventPublisher.Tests.Impl
     [TestFixture]
     public class CompositeListenerSourceTest
     {
+        private CompositeListenerSource _compositeSource;
+        private SimpleAssignee _firstSource;
+        private SimpleAssignee _secondSource;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _compositeSource = new CompositeListenerSource();
+
+            _firstSource = new SimpleAssignee();
+            _secondSource = new SimpleAssignee();
+
+            _compositeSource.AddSource(_firstSource);
+            _compositeSource.AddSource(_secondSource);
+        }
+
         [Test]
         public void Resolve_listners_from_all_sources()
         {
-            var compositeSource = new CompositeListenerSource();
-
             var firstListener = new TestListener();
             var secondListener = new TestListener();
 
-            var firstSource = new SimpleAssignee();
-            var secondSource = new SimpleAssignee();
+            _firstSource.Subscribe(firstListener);
+            _secondSource.Subscribe(secondListener);
 
-            firstSource.Subscribe(firstListener);
-            secondSource.Subscribe(secondListener);
-
-            compositeSource.AddSource(firstSource);
-            compositeSource.AddSource(secondSource);
-
-            var listeners = new List<IListener<TestMessage>>(compositeSource.ResolveListenersFor<TestMessage>());
+            var listeners = GetListenersFromCompositeSource();
 
             listeners.Satisfy(list =>
                               list.Contains(firstListener) &&
                               list.Contains(secondListener));
+        }
+
+        private IList<IListener<TestMessage>> GetListenersFromCompositeSource()
+        {
+            return new List<IListener<TestMessage>>(_compositeSource.ResolveListenersFor<TestMessage>());
+        }
+
+        [Test]
+        public void Resolve_will_return_the_only_instance_of_listener_if_it_exists_in_many_sources()
+        {
+            var listener = new TestListener();
+
+            _firstSource.Subscribe(listener);
+            _secondSource.Subscribe(listener);
+
+            var result = GetListenersFromCompositeSource();
+
+            Assert.That(result.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Remove_removes_source()
+        {
+            var listener = new TestListener();
+            _firstSource.Subscribe(listener);
+
+            _compositeSource.RemoveSource(_firstSource);
+
+            var reulst = GetListenersFromCompositeSource();
+
+            Assert.That(reulst, Is.Empty);
         }
     }
 }

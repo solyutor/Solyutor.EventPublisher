@@ -13,7 +13,7 @@ namespace Solyutor.EventPublisher.Impl
 
         #region IListenerSource Members
 
-        public IEnumerable<IListener<TMessage>> ResolveListenersFor<TMessage>()
+        public virtual IEnumerable<IListener<TMessage>> ResolveListenersFor<TMessage>()
         {
             var result = new HashSet<IListener<TMessage>>();
             foreach (var listenerSource in _sources)
@@ -31,6 +31,11 @@ namespace Solyutor.EventPublisher.Impl
         public virtual void AddSource(IListenerSource listenerSource)
         {
             _sources.Add(listenerSource);
+        }
+
+        public virtual void RemoveSource(IListenerSource listenerSource)
+        {
+            _sources.Remove(listenerSource);
         }
     }
 }
