@@ -2,7 +2,7 @@
 {
     public class SimplePublishWay : IPublishWay
     {
-        public void Publish<TMessage>(TMessage message, IListener<TMessage> listener)
+        public virtual void Publish<TMessage>(TMessage message, IListener<TMessage> listener)
         {
             listener.ListenTo(message);
         }

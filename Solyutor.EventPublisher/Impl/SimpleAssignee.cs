@@ -12,17 +12,17 @@ namespace Solyutor.EventPublisher.Impl
             _listeners = new HashSet<object>();
         }
 
-        public void Subscribe(object listener)
-        {
+        public virtual void Subscribe(object listener)
+        { 
             _listeners.Add(listener);
         }
 
-        public void Unsubscribe(object listener)
+        public virtual void Unsubscribe(object listener)
         {
             _listeners.Remove(listener);
         }
 
-        public IEnumerable<IListener<TMessage>> ResolveListenersFor<TMessage>()
+        public virtual IEnumerable<IListener<TMessage>> ResolveListenersFor<TMessage>()
         {
             return _listeners.OfType<IListener<TMessage>>();
         }

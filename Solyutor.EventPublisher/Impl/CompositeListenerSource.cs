@@ -28,7 +28,7 @@ namespace Solyutor.EventPublisher.Impl
 
         #endregion
 
-        public void AddSource(IListenerSource listenerSource)
+        public virtual void AddSource(IListenerSource listenerSource)
         {
             _sources.Add(listenerSource);
         }

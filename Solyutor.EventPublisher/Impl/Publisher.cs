@@ -11,7 +11,7 @@
             _publishWay = publishWay;
         }
 
-        public void Publish<TMessage>(TMessage message)
+        public virtual void Publish<TMessage>(TMessage message)
         {
             foreach (var listener in _listenerSource.ResolveListenersFor<TMessage>())
             {
