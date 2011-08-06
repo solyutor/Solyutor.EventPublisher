@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 namespace Solyutor.EventPublisher.Impl
 {
-    interface IListenerSource
+    public interface IListenerSource
     {
-        IEnumerable<TMessage> ResolveListenersFor<TMessage>();
+        IEnumerable<IListener<TMessage>> ResolveListenersFor<TMessage>();
     }
 }

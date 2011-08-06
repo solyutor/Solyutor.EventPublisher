@@ -45,10 +45,14 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Impl\SimpleAssigneeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Impl\" />
+    <ProjectReference Include="..\Solyutor.EventPublisher\Solyutor.EventPublisher.csproj">
+      <Project>{EE246FD5-222B-43F8-BE54-B3FD6A371240}</Project>
+      <Name>Solyutor.EventPublisher</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

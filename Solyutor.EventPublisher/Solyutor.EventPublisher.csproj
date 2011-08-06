@@ -43,15 +43,13 @@
     <Compile Include="IAssignee.cs" />
     <Compile Include="Impl\IListenerSource.cs" />
     <Compile Include="Impl\IPublishWay.cs" />
+    <Compile Include="Impl\SimpleAssignee.cs" />
     <Compile Include="IPublisher.cs" />
     <Compile Include="IListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  	   
   <Target Name="BeforeBuild">
-    <Exec Condition="Exists('$(ProjectDir)packages.config')"
-            Command="&quot;$(SolutionDir)Tools\nuget.exe&quot; install &quot;$(ProjectDir)packages.config&quot; -o &quot;$(SolutionDir)Packages&quot;" />
+    <Exec Condition="Exists('$(ProjectDir)packages.config')" Command="&quot;$(SolutionDir)Tools\nuget.exe&quot; install &quot;$(ProjectDir)packages.config&quot; -o &quot;$(SolutionDir)Packages&quot;" />
   </Target>
-  
 </Project>
