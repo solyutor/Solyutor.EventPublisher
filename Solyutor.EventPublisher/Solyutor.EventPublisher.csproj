@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAssignee.cs" />
+    <Compile Include="Impl\CompositeListenerSource.cs" />
     <Compile Include="Impl\IListenerSource.cs" />
     <Compile Include="Impl\IPublishWay.cs" />
     <Compile Include="Impl\Publisher.cs" />
