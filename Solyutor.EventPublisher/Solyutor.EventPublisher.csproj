@@ -43,6 +43,7 @@
     <Compile Include="IAssignee.cs" />
     <Compile Include="Impl\IListenerSource.cs" />
     <Compile Include="Impl\IPublishWay.cs" />
+    <Compile Include="Impl\Publisher.cs" />
     <Compile Include="Impl\SimpleAssignee.cs" />
     <Compile Include="Impl\SimplePublishWay.cs" />
     <Compile Include="IPublisher.cs" />

@@ -45,6 +45,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Impl\PublisherTest.cs" />
     <Compile Include="Impl\SimpleAssigneeTest.cs" />
     <Compile Include="Impl\SimplePublishWayTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
