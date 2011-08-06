@@ -11,6 +11,14 @@ namespace Solyutor.EventPublisher.Impl
             _sources = new HashSet<IListenerSource>();
         }
 
+        public CompositeListenerSource(IEnumerable<IListenerSource> listenerSources) : this()
+        {
+            foreach (var listenerSource in listenerSources)
+            {
+                AddSource(listenerSource);
+            }
+        }
+
         #region IListenerSource Members
 
         public virtual IEnumerable<IListener<TMessage>> ResolveListenersFor<TMessage>()

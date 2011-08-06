@@ -70,5 +70,23 @@ namespace Solyutor.EventPublisher.Tests.Impl
 
             Assert.That(reulst, Is.Empty);
         }
+
+        [Test]
+        public void Constructor_add_all_sources()
+        {
+            _compositeSource = new CompositeListenerSource(new[]{_firstSource, _secondSource});
+
+            var firstListener = new TestListener();
+            var secondListener = new TestListener();
+
+            _firstSource.Subscribe(firstListener);
+            _secondSource.Subscribe(secondListener);
+
+            var listeners = GetListenersFromCompositeSource();
+
+            listeners.Satisfy(list =>
+                              list.Contains(firstListener) &&
+                              list.Contains(secondListener));
+        }
     }
 }
