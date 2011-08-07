@@ -7,7 +7,7 @@ using Solyutor.EventPublisher.Castle.Facility;
 using Solyutor.EventPublisher.Castle.Tests.Impl;
 using Solyutor.EventPublisher.Impl;
 
-namespace Solyutor.EventPublisher.Castle.Tests
+namespace Solyutor.EventPublisher.Castle.Tests.Facility
 {
     [TestFixture]
     public class PublisherFacilityTest
