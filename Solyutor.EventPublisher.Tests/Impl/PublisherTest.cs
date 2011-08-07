@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Solyutor.EventPublisher.Impl;
 
 namespace Solyutor.EventPublisher.Tests.Impl
@@ -20,6 +21,20 @@ namespace Solyutor.EventPublisher.Tests.Impl
             publisher.Publish(message);
 
             Assert.That(listener.TestMessage, Is.SameAs(message));
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Contstructor_will_throw_if_publishway_is_null()
+        {
+            new Publisher(new SimpleAssignee(), null);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Contstructor_will_throw_if_listnersource_is_null()
+        {
+            new Publisher(null, new SimplePublishWay());
         }
     }
 }
