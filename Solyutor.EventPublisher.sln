@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solyutor.EventPublisher", "Solyutor.EventPublisher\Solyutor.EventPublisher.csproj", "{EE246FD5-222B-43F8-BE54-B3FD6A371240}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solyutor.EventPublisher.Tests", "Solyutor.EventPublisher.Tests\Solyutor.EventPublisher.Tests.csproj", "{22431BF3-661F-4F65-954A-BFC2DA959AB9}"
@@ -8,6 +8,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solyutor.EventPublisher.Castle", "Solyutor.EventPublisher.Castle\Solyutor.EventPublisher.Castle.csproj", "{F484E1F4-0BFF-4023-BA69-129F19D4F2B8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solyutor.EventPublisher.Castle.Tests", "Solyutor.EventPublisher.Castle.Tests\Solyutor.EventPublisher.Castle.Tests.csproj", "{03173175-9F4A-4E08-99BA-4D137B84C653}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{371BD807-33C0-41E0-A6D0-D312C21EB8E2}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.txt = ReadMe.txt
+		SolutionVersion.cs = SolutionVersion.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

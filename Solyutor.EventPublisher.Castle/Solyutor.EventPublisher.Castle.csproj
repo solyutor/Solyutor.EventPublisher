@@ -42,6 +42,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SolutionVersion.cs">
+      <Link>Properties\SolutionVersion.cs</Link>
+    </Compile>
     <Compile Include="Facility\PublisherFacility.cs" />
     <Compile Include="Impl\TransientSource.cs" />
     <Compile Include="ITransientListener.cs" />
