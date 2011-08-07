@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Castle.MicroKernel.Facilities;
 using Castle.MicroKernel.Registration;
 using Solyutor.EventPublisher.Castle.Impl;
@@ -9,6 +10,7 @@ namespace Solyutor.EventPublisher.Castle.Facility
     public class PublisherFacility : AbstractFacility
     {
         private readonly IPublishWay _publishWay;
+        private IAssignee _assignee;
 
         public PublisherFacility()
         {
@@ -21,16 +23,10 @@ namespace Solyutor.EventPublisher.Castle.Facility
 
         protected override void Init()
         {
-            IAssignee assignee = ResolveOfCreateAssignee();
-            IPublishWay publishWay = ResolvePublishWay();
-
-
-            var compositeSource =
-                new CompositeListenerSource(new[] {(IListenerSource) assignee, new TransientSource(Kernel)});
+            _assignee = ResolveOfCreateAssignee();
 
             Kernel.Register(
-                Component.For<IPublisher>().UsingFactoryMethod(kernel =>
-                                                               new Publisher(compositeSource, publishWay)));
+                Component.For<IPublisher>().UsingFactoryMethod(CreatePublisher));
         }
 
         private IPublishWay ResolvePublishWay()
@@ -64,9 +60,20 @@ namespace Solyutor.EventPublisher.Castle.Facility
             {
                 assignee = new SimpleAssignee();
                 Kernel.Register(
-                    Component.For<IAssignee>().Instance(assignee));
+                    Component.For<IAssignee, IListenerSource>().Instance(assignee));
             }
             return assignee;
+        }
+
+        public IPublisher CreatePublisher()
+        {
+            IPublishWay publishWay = ResolvePublishWay();
+
+            var sources = new List<IListenerSource>(Kernel.ResolveAll<IListenerSource>()) {new TransientSource(Kernel)};
+
+            var compositeSource = new CompositeListenerSource(sources);
+
+            return new Publisher(compositeSource, publishWay);
         }
     }
 }
