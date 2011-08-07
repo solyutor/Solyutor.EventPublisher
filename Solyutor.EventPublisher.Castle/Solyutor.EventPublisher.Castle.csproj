@@ -42,8 +42,8 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Facility\PublisherFacility.cs" />
     <Compile Include="Impl\TransientSource.cs" />
-    <Compile Include="ITrackableListener.cs" />
     <Compile Include="ITransientListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
