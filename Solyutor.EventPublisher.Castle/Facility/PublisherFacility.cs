@@ -22,13 +22,13 @@ namespace Solyutor.EventPublisher.Castle.Facility
 
         protected override void Init()
         {
-            ResolveOfCreateAssignee();
+            RegisterAssignee();
 
             Kernel.Register(
                 Component.For<IPublisher>().UsingFactoryMethod(CreatePublisher));
         }
 
-        private IPublishWay ResolvePublishWay()
+        protected virtual IPublishWay ResolvePublishWay()
         {
             IPublishWay result = Kernel.HasComponent(typeof (IPublishWay)) ? Kernel.Resolve<IPublishWay>() : _publishWay;
 
@@ -39,14 +39,14 @@ namespace Solyutor.EventPublisher.Castle.Facility
             return result;
         }
 
-        private void ResolveOfCreateAssignee()
+        protected virtual void RegisterAssignee()
         {
             if (Kernel.HasComponent(typeof (IAssignee))) return;
             Kernel.Register(
                 Component.For<IAssignee, IListenerSource>().Instance(new SimpleAssignee()));
         }
 
-        public IPublisher CreatePublisher()
+        protected virtual IPublisher CreatePublisher()
         {
             var publishWay = ResolvePublishWay();
 
