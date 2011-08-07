@@ -1,4 +1,4 @@
-namespace Solyutor.EventPublisher.Castle.Tests.Impl
+namespace Solyutor.EventPublisher.Castle.Tests
 {
     public class TestTransientListener : ITransientListener<Message>
     {

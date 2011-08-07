@@ -60,6 +60,7 @@
     <Compile Include="..\SolutionVersion.cs">
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
+    <Compile Include="Facility\AllTransientListenersTest.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="TestTransientListener.cs" />
     <Compile Include="Impl\TransientSourceTest.cs" />
