@@ -1,6 +1,8 @@
-﻿namespace Solyutor.EventPublisher
+﻿using Solyutor.EventPublisher.Impl;
+
+namespace Solyutor.EventPublisher
 {
-    public interface IAssignee
+    public interface IAssignee : IListenerSource
     {
         void Subscribe(object listener);
 

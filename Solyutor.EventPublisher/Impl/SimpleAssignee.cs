@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Solyutor.EventPublisher.Impl
 {
-    public class SimpleAssignee : IAssignee, IListenerSource
+    public class SimpleAssignee : IAssignee
     {
         private readonly ISet<object> _listeners;
 
