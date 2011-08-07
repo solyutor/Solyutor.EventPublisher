@@ -1,5 +1,7 @@
-﻿using Castle.MicroKernel.Facilities;
+﻿using System;
+using Castle.MicroKernel.Facilities;
 using Castle.MicroKernel.Registration;
+using Solyutor.EventPublisher.Castle.Impl;
 using Solyutor.EventPublisher.Impl;
 
 namespace Solyutor.EventPublisher.Castle.Facility
@@ -8,25 +10,63 @@ namespace Solyutor.EventPublisher.Castle.Facility
     {
         private readonly IPublishWay _publishWay;
 
-        public PublisherFacility() : this(new SimplePublishWay())
+        public PublisherFacility()
         {
         }
 
-        private PublisherFacility(IPublishWay publishWay)
+        public PublisherFacility(IPublishWay publishWay)
         {
             _publishWay = publishWay;
         }
 
         protected override void Init()
         {
-            var assignee = new SimpleAssignee();
+            IAssignee assignee = ResolveOfCreateAssignee();
+            IPublishWay publishWay = ResolvePublishWay();
+
+
+            var compositeSource =
+                new CompositeListenerSource(new[] {(IListenerSource) assignee, new TransientSource(Kernel)});
 
             Kernel.Register(
-                Component.For<IAssignee, IListenerSource>().Instance(assignee),
-                Component.For<IPublisher>()
-                    .UsingFactoryMethod(kernel =>
-                                        new Publisher(assignee, _publishWay)));
+                Component.For<IPublisher>().UsingFactoryMethod(kernel =>
+                                                               new Publisher(compositeSource, publishWay)));
+        }
 
+        private IPublishWay ResolvePublishWay()
+        {
+            IPublishWay result = null;
+            if (Kernel.HasComponent(typeof (IPublishWay)))
+            {
+                result = Kernel.Resolve<IPublishWay>();
+            }
+            else
+            {
+                result = _publishWay;
+            }
+
+            if (result == null)
+                throw new InvalidOperationException(
+                    "Publisher facility needs an instance of IPublishWay. Supply it using PublishFacility constructor or register it in advance in the container.");
+
+            return result;
+        }
+
+        private IAssignee ResolveOfCreateAssignee()
+        {
+            IAssignee assignee = null;
+
+            if (Kernel.HasComponent(typeof (IAssignee)))
+            {
+                assignee = Kernel.Resolve<IAssignee>();
+            }
+            else
+            {
+                assignee = new SimpleAssignee();
+                Kernel.Register(
+                    Component.For<IAssignee>().Instance(assignee));
+            }
+            return assignee;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Solyutor.EventPublisher.Impl
+﻿using System;
+
+namespace Solyutor.EventPublisher.Impl
 {
     public class Publisher : IPublisher
     {
@@ -7,6 +9,11 @@
 
         public Publisher(IListenerSource listenerSource, IPublishWay publishWay)
         {
+            if(listenerSource == null) 
+                throw new ArgumentNullException("listenerSource");
+            if(publishWay == null)
+                throw new ArgumentNullException("publishWay");
+
             _listenerSource = listenerSource;
             _publishWay = publishWay;
         }
