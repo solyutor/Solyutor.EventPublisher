@@ -55,6 +55,7 @@
     <Compile Include="Impl\PublisherTest.cs" />
     <Compile Include="Impl\SimpleAssigneeTest.cs" />
     <Compile Include="Impl\SimplePublishWayTest.cs" />
+    <Compile Include="Impl\SynchronizationContextPublishWayTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Testing\TestingExtensionsFixture.cs" />
     <Compile Include="Testing\TestListnerTest.cs" />
