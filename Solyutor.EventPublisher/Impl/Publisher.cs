@@ -4,8 +4,8 @@ namespace Solyutor.EventPublisher.Impl
 {
     public class Publisher : IPublisher
     {
-        private readonly IListenerSource _listenerSource;
-        private readonly IPublishWay _publishWay;
+        protected readonly IListenerSource ListenerSource;
+        protected readonly IPublishWay PublishWay;
 
         public Publisher(IListenerSource listenerSource, IPublishWay publishWay)
         {
@@ -14,15 +14,15 @@ namespace Solyutor.EventPublisher.Impl
             if(publishWay == null)
                 throw new ArgumentNullException("publishWay");
 
-            _listenerSource = listenerSource;
-            _publishWay = publishWay;
+            ListenerSource = listenerSource;
+            PublishWay = publishWay;
         }
 
         public virtual void Publish<TMessage>(TMessage message)
         {
-            foreach (var listener in _listenerSource.ResolveListenersFor<TMessage>())
+            foreach (var listener in ListenerSource.ResolveListenersFor<TMessage>())
             {
-                _publishWay.Publish(message, listener);
+                PublishWay.Publish(message, listener);
             }
         }
     }

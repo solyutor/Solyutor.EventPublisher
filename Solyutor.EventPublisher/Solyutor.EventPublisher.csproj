@@ -50,6 +50,9 @@
     <Compile Include="IPublisher.cs" />
     <Compile Include="IListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Testing\TestingExtensions.cs" />
+    <Compile Include="Testing\TestListener.cs" />
+    <Compile Include="Testing\TestPublisher.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
