@@ -1,1 +1,1 @@
-This is project 
+One more implementation of well known pattern Event Aggregator
