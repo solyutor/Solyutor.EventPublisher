@@ -1,1 +1,1 @@
-One more implementation of well known pattern Event Aggregator
+One more implementation of well known pattern Event Aggregator, strongly focused on extensibility. 
