@@ -24,10 +24,10 @@ namespace Solyutor.EventPublisher.Impl
 
         public virtual void Unsubscribe(object listener)
         {
-            lock(_latch)
+            lock (_latch)
             {
                 _listeners.Remove(listener);
-            )
+            }
         }
 
         public virtual IEnumerable<IListener<TMessage>> ResolveListenersFor<TMessage>()
