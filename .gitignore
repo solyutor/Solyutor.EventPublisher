@@ -25,3 +25,5 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 [Pp]ackages*/
+code_drop*/
+build_output*/

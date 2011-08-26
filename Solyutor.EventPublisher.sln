@@ -11,8 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solyutor.EventPublisher.Cas
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{371BD807-33C0-41E0-A6D0-D312C21EB8E2}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		ReadMe.txt = ReadMe.txt
-		SolutionVersion.cs = SolutionVersion.cs
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solyutor.EventPublisher.Sample", "Solyutor.EventPublisher.Sample\Solyutor.EventPublisher.Sample.csproj", "{EC5CC797-D03B-4235-AE6F-47A97C6796CE}"
