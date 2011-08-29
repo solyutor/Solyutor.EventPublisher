@@ -30,13 +30,38 @@
   <property name="dirs.docs" value="${dirs.current}${path.separator}${folder.documentation}" overwrite="false" />
   <property name="folder.references" value="lib" overwrite="false" />
   <property name="dirs.lib" value="${dirs.current}${path.separator}${folder.references}" overwrite="false" />
+  
+  <property name="dirs.publisher" value="${dirs.drop.nuget}\Publisher"/>
+  <property name="dirs.publisher.windsor" value="${dirs.drop.nuget}\Publisher.Windsor"/>
+  
+  
   <target name="go">
 	<echo level="Warning" message="Deleting castle assemblies" />
-	<delete verbose="true">
-      <fileset basedir="${dirs.drop.nuget}\lib" >
-        <include name="Castle*.*" />
-      </fileset>
-    </delete>
+	
+	<delete dir="${dirs.publisher}" failonerror="false"/>
+	<delete dir="${dirs.publisher.windsor}" failonerror="false"/>
+	
+	<mkdir dir="${dirs.publisher}" />
+	<mkdir dir="${dirs.publisher.windsor}"/>
+	
+	<copy todir="${dirs.publisher}">
+		<fileset basedir="${dirs.drop.nuget}\lib">
+			<include name="Solyutor.EventPublisher.dll"/>
+			<include name="Solyutor.EventPublisher.pdb"/>
+		</fileset>
+	</copy>
+	
+	<copy todir="${dirs.publisher.windsor}\lib">
+		<fileset basedir="${dirs.drop.nuget}\lib">
+			<include name="Solyutor.EventPublisher.Castle.dll"/>
+			<include name="Solyutor.EventPublisher.Castle.pdb"/>
+		</fileset>
+	</copy>
+	
+	<move file="${dirs.drop.nuget}\Solyutor.EventPublisher.nuspec" todir="${dirs.publisher}"/>
+	<move file="${dirs.drop.nuget}\Solyutor.EventPublisher.Windsor.nuspec" todir="${dirs.publisher.windsor}"/>
+
+	
   </target>
 
   <!--<target name="documentation">
