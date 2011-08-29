@@ -30,7 +30,7 @@
   <property name="dirs.docs" value="${dirs.current}${path.separator}${folder.documentation}" overwrite="false" />
   <property name="folder.references" value="lib" overwrite="false" />
   <property name="dirs.lib" value="${dirs.current}${path.separator}${folder.references}" overwrite="false" />
-  <target name="go" depends="run_tasks">
+  <target name="go">
 	<echo level="Warning" message="Deleting castle assemblies" />
 	<delete verbose="true">
       <fileset basedir="${dirs.drop.nuget}\lib" >
