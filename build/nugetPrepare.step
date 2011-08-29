@@ -137,6 +137,10 @@
           file="${spec.file}"
           xpath="/package/metadata/version"
           value="${assembly.version.full}" />
+		  <xmlpoke
+          file="${spec.file}"
+          xpath="/package/metadata/dependencies/dependency[@id = 'Solyutor.EventPublisher']/@version"
+          value="${assembly.version.full}" />
       </do>
     </foreach>
   </target>
