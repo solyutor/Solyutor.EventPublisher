@@ -1,4 +1,4 @@
-﻿using Solyutor.EventPublisher.Castle;
+﻿using Solyutor.EventPublisher.Windsor;
 
 namespace Solyutor.EventPublisher.Sample
 {

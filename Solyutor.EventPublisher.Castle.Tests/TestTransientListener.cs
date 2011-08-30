@@ -1,3 +1,5 @@
+using Solyutor.EventPublisher.Windsor;
+
 namespace Solyutor.EventPublisher.Castle.Tests
 {
     public class TestTransientListener : ITransientListener<Message>

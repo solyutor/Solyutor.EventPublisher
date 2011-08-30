@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Castle.MicroKernel.Registration;
 
-namespace Solyutor.EventPublisher.Castle.Facility
+namespace Solyutor.EventPublisher.Windsor.Facility
 {
     public static class AllTransientListeners
     {

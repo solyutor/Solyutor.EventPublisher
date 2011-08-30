@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using Castle.MicroKernel.Facilities;
 using Castle.MicroKernel.Registration;
-using Solyutor.EventPublisher.Castle.Impl;
 using Solyutor.EventPublisher.Impl;
 
-namespace Solyutor.EventPublisher.Castle.Facility
+namespace Solyutor.EventPublisher.Windsor.Facility
 {
     public class PublisherFacility : AbstractFacility
     {

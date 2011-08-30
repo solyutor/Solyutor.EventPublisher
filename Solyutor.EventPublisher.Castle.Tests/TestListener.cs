@@ -1,5 +1,3 @@
-using Solyutor.EventPublisher.Castle.Tests.Impl;
-
 namespace Solyutor.EventPublisher.Castle.Tests
 {
     public class TestListener : IListener<Message>

@@ -2,8 +2,8 @@
 using System.Windows.Forms;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using Solyutor.EventPublisher.Castle.Facility;
 using Solyutor.EventPublisher.Impl;
+using Solyutor.EventPublisher.Windsor.Facility;
 
 namespace Solyutor.EventPublisher.Sample
 {

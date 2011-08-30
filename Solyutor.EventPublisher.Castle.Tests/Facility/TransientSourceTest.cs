@@ -2,9 +2,10 @@
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using NUnit.Framework;
-using Solyutor.EventPublisher.Castle.Impl;
+using Solyutor.EventPublisher.Windsor;
+using Solyutor.EventPublisher.Windsor.Facility;
 
-namespace Solyutor.EventPublisher.Castle.Tests.Impl
+namespace Solyutor.EventPublisher.Castle.Tests.Facility
 {
     [TestFixture]
     public class TransientSourceTest

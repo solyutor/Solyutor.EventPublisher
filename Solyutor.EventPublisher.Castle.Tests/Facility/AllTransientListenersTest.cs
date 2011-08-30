@@ -3,7 +3,8 @@ using Castle.Core;
 using Castle.Windsor;
 using NUnit.Framework;
 using SharpTestsEx;
-using Solyutor.EventPublisher.Castle.Facility;
+using Solyutor.EventPublisher.Windsor;
+using Solyutor.EventPublisher.Windsor.Facility;
 
 namespace Solyutor.EventPublisher.Castle.Tests.Facility
 {

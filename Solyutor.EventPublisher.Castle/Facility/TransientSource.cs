@@ -2,7 +2,7 @@
 using Castle.MicroKernel;
 using Solyutor.EventPublisher.Impl;
 
-namespace Solyutor.EventPublisher.Castle.Impl
+namespace Solyutor.EventPublisher.Windsor.Facility
 {
     public class TransientSource : IListenerSource
     {
