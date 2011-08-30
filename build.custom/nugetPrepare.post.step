@@ -36,7 +36,6 @@
   
   
   <target name="go">
-	<echo level="Warning" message="Deleting castle assemblies" />
 	
 	<delete dir="${dirs.publisher}" failonerror="false"/>
 	<delete dir="${dirs.publisher.windsor}" failonerror="false"/>
@@ -53,10 +52,13 @@
 	
 	<copy todir="${dirs.publisher.windsor}\lib">
 		<fileset basedir="${dirs.drop.nuget}\lib">
-			<include name="Solyutor.EventPublisher.Castle.dll"/>
-			<include name="Solyutor.EventPublisher.Castle.pdb"/>
+			<include name="Solyutor.EventPublisher.Windsor.dll"/>
+			<include name="Solyutor.EventPublisher.Windsor.pdb"/>
 		</fileset>
 	</copy>
+	
+	<copy file="${dirs.drop.nuget}\lib\License.txt" todir="${dirs.publisher}"/>
+	<copy file="${dirs.drop.nuget}\lib\License.txt" todir="${dirs.publisher.windsor}"/>
 	
 	<move file="${dirs.drop.nuget}\Solyutor.EventPublisher.nuspec" todir="${dirs.publisher}"/>
 	<move file="${dirs.drop.nuget}\Solyutor.EventPublisher.Windsor.nuspec" todir="${dirs.publisher.windsor}"/>

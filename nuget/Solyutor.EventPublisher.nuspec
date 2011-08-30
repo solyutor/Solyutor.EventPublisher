@@ -8,13 +8,6 @@
     <summary>Simple extensible event aggregator for net.</summary>
     <description>Simple extensible event aggregator for net.</description>
     <projectUrl>https://github.com/solyutor/Solyutor.EventPublisher</projectUrl>
-    <!--<licenseUrl>__REPLACE__</licenseUrl>-->
-    <!--<requireLicenseAcceptance>false</requireLicenseAcceptance>-->
-    <!--<tags>space delimited</tags>-->
-    <!--<iconUrl>32x32.png</iconUrl>-->
-    <!--<dependencies>
-      <dependency id="something" version="" />
-    </dependencies>-->
   </metadata>
   
 </package>

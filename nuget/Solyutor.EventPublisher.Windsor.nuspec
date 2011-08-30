@@ -8,10 +8,6 @@
     <summary>Castle Windsor extensions for Solyutor.EventPublisher</summary>
     <description>Provides facility that allows transient listeners to handle messages.</description>
     <projectUrl>https://github.com/solyutor/Solyutor.EventPublisher</projectUrl>
-    <!--<licenseUrl>__REPLACE__</licenseUrl>-->
-    <!--<requireLicenseAcceptance>false</requireLicenseAcceptance>-->
-    <!--<tags>space delimited</tags>-->
-    <!--<iconUrl>32x32.png</iconUrl>-->
     <dependencies>
       <dependency id="Castle.Windsor" version="2.5.3" />
       <dependency id="Solyutor.EventPublisher" version="DO_NOT_EDIT"/>
