@@ -69,7 +69,7 @@
     <Compile Include="TestListener.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Solyutor.EventPublisher.Castle\Solyutor.EventPublisher.Castle.csproj">
+    <ProjectReference Include="..\Solyutor.EventPublisher.Castle\Solyutor.EventPublisher.Windsor.csproj">
       <Project>{F484E1F4-0BFF-4023-BA69-129F19D4F2B8}</Project>
       <Name>Solyutor.EventPublisher.Castle</Name>
     </ProjectReference>

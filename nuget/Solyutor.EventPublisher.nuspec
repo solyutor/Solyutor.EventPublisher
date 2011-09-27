@@ -9,5 +9,4 @@
     <description>Simple extensible event aggregator for net.</description>
     <projectUrl>https://github.com/solyutor/Solyutor.EventPublisher</projectUrl>
   </metadata>
-  
-</package>
+  </package>
