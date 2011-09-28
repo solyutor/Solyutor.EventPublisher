@@ -58,10 +58,26 @@
     <Compile Include="..\SolutionVersion.cs">
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
+    <Compile Include="Module\PublisherModuleTest.cs" />
+    <Compile Include="Module\TestPerDependencyListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Solyutor.EventPublisher.Autofac\Solyutor.EventPublisher.Autofac.csproj">
+      <Project>{400E84E7-1B86-41EA-9A2C-0DAF6A85A221}</Project>
+      <Name>Solyutor.EventPublisher.Autofac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Solyutor.EventPublisher.Tests\Solyutor.EventPublisher.Tests.csproj">
+      <Project>{22431BF3-661F-4F65-954A-BFC2DA959AB9}</Project>
+      <Name>Solyutor.EventPublisher.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Solyutor.EventPublisher\Solyutor.EventPublisher.csproj">
+      <Project>{EE246FD5-222B-43F8-BE54-B3FD6A371240}</Project>
+      <Name>Solyutor.EventPublisher</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
