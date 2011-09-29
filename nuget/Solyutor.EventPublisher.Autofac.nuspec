@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata>
+    <id>Solyutor.EventPublisher.Autofac</id>
+    <version>DO_NOT_EDIT</version>
+    <authors>Jury Soldatenkov</authors>
+    <owners>Jury Soldatenkov</owners>
+    <summary>Autofac extensions for Solyutor.EventPublisher</summary>
+    <description>Provides facility that allows transient listeners to handle messages.</description>
+    <projectUrl>https://github.com/solyutor/Solyutor.EventPublisher</projectUrl>
+    <dependencies>
+      <dependency id="Autofac" version="2.5.2.830" />
+      <dependency id="Solyutor.EventPublisher" version="DO_NOT_EDIT"/>
+    </dependencies>
+  </metadata>
+  </package>

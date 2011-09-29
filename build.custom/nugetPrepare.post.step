@@ -33,35 +33,44 @@
   
   <property name="dirs.publisher" value="${dirs.drop.nuget}\Publisher"/>
   <property name="dirs.publisher.windsor" value="${dirs.drop.nuget}\Publisher.Windsor"/>
+  <property name="dirs.publisher.Autofac" value="${dirs.drop.nuget}\Publisher.Autofac"/>
   
   
   <target name="go">
 	
 	<delete dir="${dirs.publisher}" failonerror="false"/>
-	<delete dir="${dirs.publisher.windsor}" failonerror="false"/>
-	
 	<mkdir dir="${dirs.publisher}" />
-	<mkdir dir="${dirs.publisher.windsor}"/>
-	
 	<copy todir="${dirs.publisher}\lib">
 		<fileset basedir="${dirs.drop.nuget}\lib">
 			<include name="Solyutor.EventPublisher.dll"/>
 			<include name="Solyutor.EventPublisher.pdb"/>
 		</fileset>
 	</copy>
+	<copy file="${dirs.drop.nuget}\lib\License.txt" todir="${dirs.publisher}"/>
+	<move file="${dirs.drop.nuget}\Solyutor.EventPublisher.nuspec" todir="${dirs.publisher}"/>
 	
+	<delete dir="${dirs.publisher.windsor}" failonerror="false"/>
+	<mkdir dir="${dirs.publisher.windsor}"/>
 	<copy todir="${dirs.publisher.windsor}\lib">
 		<fileset basedir="${dirs.drop.nuget}\lib">
 			<include name="Solyutor.EventPublisher.Windsor.dll"/>
 			<include name="Solyutor.EventPublisher.Windsor.pdb"/>
 		</fileset>
 	</copy>
-	
-	<copy file="${dirs.drop.nuget}\lib\License.txt" todir="${dirs.publisher}"/>
 	<copy file="${dirs.drop.nuget}\lib\License.txt" todir="${dirs.publisher.windsor}"/>
-	
-	<move file="${dirs.drop.nuget}\Solyutor.EventPublisher.nuspec" todir="${dirs.publisher}"/>
 	<move file="${dirs.drop.nuget}\Solyutor.EventPublisher.Windsor.nuspec" todir="${dirs.publisher.windsor}"/>
+
+	
+	<delete dir="${dirs.publisher.Autofac}" failonerror="false"/>
+	<mkdir dir="${dirs.publisher.Autofac}"/>
+	<copy todir="${dirs.publisher.Autofac}\lib">
+		<fileset basedir="${dirs.drop.nuget}\lib">
+			<include name="Solyutor.EventPublisher.Autofac.dll"/>
+			<include name="Solyutor.EventPublisher.Autofac.pdb"/>
+		</fileset>
+	</copy>
+	<copy file="${dirs.drop.nuget}\lib\License.txt" todir="${dirs.publisher.Autofac}"/>
+	<move file="${dirs.drop.nuget}\Solyutor.EventPublisher.Autofac.nuspec" todir="${dirs.publisher.Autofac}"/>
 
 	
   </target>
