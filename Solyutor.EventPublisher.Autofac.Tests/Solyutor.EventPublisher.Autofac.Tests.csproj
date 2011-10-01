@@ -64,6 +64,7 @@
     <Compile Include="..\SolutionVersion.cs">
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
+    <Compile Include="Module\AutofacListenerSourceTest.cs" />
     <Compile Include="Module\PublisherModuleTest.cs" />
     <Compile Include="Module\TestPerDependencyListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

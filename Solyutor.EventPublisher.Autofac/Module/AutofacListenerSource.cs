@@ -1,14 +1,24 @@
 using System;
 using System.Collections.Generic;
+using Autofac;
 using Solyutor.EventPublisher.Impl;
 
 namespace Solyutor.EventPublisher.Autofac.Module
 {
     public class AutofacListenerSource : IListenerSource
     {
+        private readonly IComponentContext _componentContext;
+
+        public AutofacListenerSource(IComponentContext componentContext)
+        {
+            _componentContext = componentContext;
+            if(componentContext == null)
+                throw  new ArgumentNullException("componentContext");
+        }
+
         public IEnumerable<IListener<TMessage>> ResolveListenersFor<TMessage>()
         {
-            throw new NotImplementedException();
+            return _componentContext.Resolve<IEnumerable<IListener<TMessage>>>();
         }
     }
 }

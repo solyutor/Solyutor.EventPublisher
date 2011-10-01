@@ -2,14 +2,13 @@
 using Autofac;
 using Autofac.Core;
 using Solyutor.EventPublisher.Impl;
-
+using AutofacModule = global::Autofac.Module;
 
 namespace Solyutor.EventPublisher.Autofac.Module
 {
-    public class PublisherModule : IModule
+    public class PublisherModule : AutofacModule
     {
         private readonly IPublishWay _publishWay;
-        private ContainerBuilder _builder;
 
         public PublisherModule(IPublishWay publishWay)
         {
@@ -17,26 +16,29 @@ namespace Solyutor.EventPublisher.Autofac.Module
             {
                 throw new ArgumentNullException("publishWay");
             }
-            _builder = new ContainerBuilder();
 
             _publishWay = publishWay;
         }
 
-        public void Configure(IComponentRegistry componentRegistry)
+        protected override void Load(ContainerBuilder builder)
         {
-            if (componentRegistry == null)
-                throw new ArgumentNullException("componentRegistry");
-
-            IAssignee assignee = new SimpleAssignee();
-            IListenerSource listenerSource = new CompositeListenerSource(new IListenerSource[] {new AutofacListenerSource(), assignee});
-
-            _builder.RegisterInstance(_publishWay).As<IPublishWay>().SingleInstance();
-            _builder.RegisterInstance(assignee).As<IAssignee>().SingleInstance();
-            _builder.RegisterInstance(listenerSource).As<IListenerSource>();
-
-            _builder.RegisterType<Publisher>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterInstance(_publishWay).As<IPublishWay>().SingleInstance();
             
-            _builder.Update(componentRegistry);
+            builder.RegisterType<SimpleAssignee>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.RegisterType<AutofacListenerSource>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.RegisterType<AutofacCompositeListenerSourceSource>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
+            
+            builder.RegisterType<Publisher>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
         }
     }
 }
