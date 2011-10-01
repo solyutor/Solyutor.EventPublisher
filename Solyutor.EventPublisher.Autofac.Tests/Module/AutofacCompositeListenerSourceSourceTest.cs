@@ -10,7 +10,7 @@ using Solyutor.EventPublisher.Tests.Impl;
 namespace Solyutor.EventPublisher.Autofac.Tests.Module
 {
     [TestFixture]
-    public class AutofacCompositeListenerSourceSource : IListener<TestMessage>
+    public class AutofacCompositeListenerSourceSourceTest : IListener<TestMessage>
     {
         [Test]
         public void Can_get_listeners_from_all_sources()
@@ -30,8 +30,8 @@ namespace Solyutor.EventPublisher.Autofac.Tests.Module
             
             var listeners = listenerSource.ResolveListenersFor<TestMessage>();
 
-
             listeners.Satisfy(l =>
+                l.Count() == 2 && 
                 l.Contains(this) &&
                 l.Any( x => x.GetType() == typeof(TestPerDependencyListener)));
         }

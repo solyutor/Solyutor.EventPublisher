@@ -9,6 +9,7 @@ namespace Solyutor.EventPublisher.Autofac.Module
     public class AutofacCompositeListenerSourceSource : CompositeListenerSource
     {
         private readonly IComponentContext _componentContext;
+        private bool _initialized;
 
         public AutofacCompositeListenerSourceSource(IComponentContext componentContext)
         {
@@ -26,10 +27,12 @@ namespace Solyutor.EventPublisher.Autofac.Module
 
         private void InitializeIfNeeded()
         {
+            if (_initialized) return;
             foreach (var listenerSource in _componentContext.Resolve<IEnumerable<IListenerSource>>().Where(source => source != this))
             {
                 AddSource(listenerSource);
             }
+            _initialized = true;
         }
     }
 }
