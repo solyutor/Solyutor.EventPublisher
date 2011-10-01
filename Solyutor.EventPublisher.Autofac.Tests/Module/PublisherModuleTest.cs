@@ -26,11 +26,10 @@ namespace Solyutor.EventPublisher.Autofac.Tests.Module
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void Module_throws_if_no_publishway_were_supplied()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterModule(new PublisherModule(null));
+            Assert.Throws<ArgumentNullException>(() => builder.RegisterModule(new PublisherModule(null)));
         }
 
         private static IContainer BuildContainer()
