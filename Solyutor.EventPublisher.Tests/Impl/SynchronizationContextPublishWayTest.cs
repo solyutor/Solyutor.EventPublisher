@@ -10,10 +10,19 @@ namespace Solyutor.EventPublisher.Tests.Impl
         [Test]
         public void Publish_will_call_listner()
         {
+            AssertDispatchesCall(new SynchronizationContextPublishWay(new SynchronizationContext()));
+        }
+
+        [Test]
+        public void Generic_publish_way_creates_synchronization_context()
+        {
+            AssertDispatchesCall(new SynchronizationContextPublishWay<SynchronizationContext>());
+        }
+
+        private static void AssertDispatchesCall(SynchronizationContextPublishWay publishWay)
+        {
             var listener = new TestListener();
             var message = new TestMessage();
-
-            var publishWay = new SynchronizationContextPublishWay(new SynchronizationContext());
 
             publishWay.Publish(message, listener);
 

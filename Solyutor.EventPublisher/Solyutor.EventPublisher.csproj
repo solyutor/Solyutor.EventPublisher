@@ -50,7 +50,7 @@
     <Compile Include="Impl\Publisher.cs" />
     <Compile Include="Impl\SimpleAssignee.cs" />
     <Compile Include="Impl\SimplePublishWay.cs" />
-    <Compile Include="Impl\SyncronizationContextPublishWay.cs" />
+    <Compile Include="Impl\SynchronizationContextPublishWay.cs" />
     <Compile Include="IPublisher.cs" />
     <Compile Include="IListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
