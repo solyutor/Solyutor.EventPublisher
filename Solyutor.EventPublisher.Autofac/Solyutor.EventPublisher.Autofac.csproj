@@ -47,6 +47,7 @@
     <Compile Include="IPerDependencyListener.cs" />
     <Compile Include="Module\AutofacCompositeListenerSourceSource.cs" />
     <Compile Include="Module\AutofacListenerSource.cs" />
+    <Compile Include="Module\PerDependencyListeners.cs" />
     <Compile Include="Module\PublisherModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
