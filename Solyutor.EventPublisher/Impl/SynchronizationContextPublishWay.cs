@@ -11,9 +11,9 @@ namespace Solyutor.EventPublisher.Impl
             _synchronizationContext = synchronizationContext;
         }
 
-        public void Publish<TMessage>(TMessage message, IListener<TMessage> listener)
+        public void Publish<TMessage>(TMessage message, IHandler<TMessage> handler)
         {
-            _synchronizationContext.Post(x => listener.ListenTo(message), null);
+            _synchronizationContext.Post(x => handler.Handle(message), null);
         }
     }
 

@@ -54,11 +54,11 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         {
             
 
-            var listener = new TestListener();
+            var listener = new TestHandler();
 
 
             windsor.Resolve<IAssignee>().Subscribe(listener);
-            windsor.Register(Component.For<TestTransientListener>());
+            windsor.Register(Component.For<TestTransientHandler>());
 
 
             var publisher = windsor.Resolve<IPublisher>();
@@ -68,7 +68,7 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
 
             message.Satisfy(m =>
                             m == listener.Message &&
-                            m == TestTransientListener.StaticMessage);
+                            m == TestTransientHandler.StaticMessage);
         }
     }
 }

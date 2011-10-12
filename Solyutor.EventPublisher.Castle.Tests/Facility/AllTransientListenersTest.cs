@@ -46,28 +46,28 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         private static void AssertRegistration(WindsorContainer windsor)
         {
             windsor.Kernel.Satisfy(kernel =>
-                                   kernel.HasComponent(typeof(ITransientListener<Message>)) &&
-                                   kernel.GetHandler(typeof(ITransientListener<Message>)).ComponentModel.LifestyleType ==
+                                   kernel.HasComponent(typeof(ITransientHandler<Message>)) &&
+                                   kernel.GetHandler(typeof(ITransientHandler<Message>)).ComponentModel.LifestyleType ==
                                    LifestyleType.Transient &&
-                                   kernel.HasComponent(typeof(ITransientListener<int>)) &&
-                                   kernel.HasComponent(typeof(ITransientListener<string>))
+                                   kernel.HasComponent(typeof(ITransientHandler<int>)) &&
+                                   kernel.HasComponent(typeof(ITransientHandler<string>))
                 );
         }
     }
 
-    public class MultiListener : ITransientListener<int>, ITransientListener<string>
+    public class MultiHandler : ITransientHandler<int>, ITransientHandler<string>
     {
-        #region ITransientListener<int> Members
+        #region ITransientHandler<int> Members
 
-        public void ListenTo(int message)
+        public void Handle(int message)
         {
         }
 
         #endregion
 
-        #region ITransientListener<string> Members
+        #region ITransientHandler<string> Members
 
-        public void ListenTo(string message)
+        public void Handle(string message)
         {
         }
 

@@ -21,7 +21,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
 
         private static void AssertDispatchesCall(SynchronizationContextPublishWay publishWay)
         {
-            var listener = new TestListener();
+            var listener = new TestHandler();
             var message = new TestMessage();
 
             publishWay.Publish(message, listener);

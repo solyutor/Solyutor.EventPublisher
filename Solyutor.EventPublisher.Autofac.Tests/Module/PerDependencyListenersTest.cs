@@ -25,15 +25,15 @@ namespace Solyutor.EventPublisher.Autofac.Tests.Module
         [Test]
         public void Register_per_dependency_instances()
         {
-            _container.Resolve<IListener<TestMessage>>();
+            _container.Resolve<IHandler<TestMessage>>();
         }
 
         [Test]
         public void Return_different_instances_when_resoleved()
         {
-            var first = _container.Resolve<IListener<TestMessage>>();
+            var first = _container.Resolve<IHandler<TestMessage>>();
 
-            var second = _container.Resolve<IListener<TestMessage>>();
+            var second = _container.Resolve<IHandler<TestMessage>>();
 
             Assert.That(first, Is.Not.SameAs(second));
         }

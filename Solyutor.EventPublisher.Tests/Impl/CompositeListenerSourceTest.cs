@@ -27,8 +27,8 @@ namespace Solyutor.EventPublisher.Tests.Impl
         [Test]
         public void Resolve_listners_from_all_sources()
         {
-            var firstListener = new TestListener();
-            var secondListener = new TestListener();
+            var firstListener = new TestHandler();
+            var secondListener = new TestHandler();
 
             _firstSource.Subscribe(firstListener);
             _secondSource.Subscribe(secondListener);
@@ -40,15 +40,15 @@ namespace Solyutor.EventPublisher.Tests.Impl
                               list.Contains(secondListener));
         }
 
-        private IList<IListener<TestMessage>> GetListenersFromCompositeSource()
+        private IList<IHandler<TestMessage>> GetListenersFromCompositeSource()
         {
-            return new List<IListener<TestMessage>>(_compositeSource.ResolveListenersFor<TestMessage>());
+            return new List<IHandler<TestMessage>>(_compositeSource.ResolveListenersFor<TestMessage>());
         }
 
         [Test]
         public void Resolve_will_return_the_only_instance_of_listener_if_it_exists_in_many_sources()
         {
-            var listener = new TestListener();
+            var listener = new TestHandler();
 
             _firstSource.Subscribe(listener);
             _secondSource.Subscribe(listener);
@@ -61,7 +61,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
         [Test]
         public void Remove_removes_source()
         {
-            var listener = new TestListener();
+            var listener = new TestHandler();
             _firstSource.Subscribe(listener);
 
             _compositeSource.RemoveSource(_firstSource);
@@ -76,8 +76,8 @@ namespace Solyutor.EventPublisher.Tests.Impl
         {
             _compositeSource = new CompositeListenerSource(new[]{_firstSource, _secondSource});
 
-            var firstListener = new TestListener();
-            var secondListener = new TestListener();
+            var firstListener = new TestHandler();
+            var secondListener = new TestHandler();
 
             _firstSource.Subscribe(firstListener);
             _secondSource.Subscribe(secondListener);

@@ -10,7 +10,7 @@ namespace Solyutor.EventPublisher.Autofac.Module
          {
              builder.RegisterAssemblyTypes(assemblies)
                  .Where(type => type.IsPerDependencyListener())
-                 .AsClosedTypesOf(typeof(IListener<>))
+                 .AsClosedTypesOf(typeof(IHandler<>))
                  .InstancePerDependency();
          }
 
@@ -18,7 +18,7 @@ namespace Solyutor.EventPublisher.Autofac.Module
         {
             var interfaces = self.FindInterfaces(
                 (@interface, nomatter) => @interface.IsGenericType &&
-                                          @interface.GetGenericTypeDefinition() == typeof (IPerDependencyListener<>),
+                                          @interface.GetGenericTypeDefinition() == typeof (IPerDependencyHandler<>),
                 null);
 
             return interfaces.Length > 0;

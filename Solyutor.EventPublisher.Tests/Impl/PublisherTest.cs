@@ -12,7 +12,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
         {
             var assignee = new SimpleAssignee();
             var publishWay = new SimplePublishWay();
-            var listener = new TestListener();
+            var listener = new TestHandler();
             var message = new TestMessage();
             var publisher = new Publisher(assignee, publishWay);
 

@@ -2,9 +2,9 @@
 {
     public class SimplePublishWay : IPublishWay
     {
-        public virtual void Publish<TMessage>(TMessage message, IListener<TMessage> listener)
+        public virtual void Publish<TMessage>(TMessage message, IHandler<TMessage> handler)
         {
-            listener.ListenTo(message);
+            handler.Handle(message);
         }
     }
 }

@@ -64,11 +64,11 @@
     <Compile Include="..\SolutionVersion.cs">
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
-    <Compile Include="Module\AutofacCompositeListenerSourceSourceTest.cs" />
+    <Compile Include="Module\AutofacCompositeHandlerSourceSourceTest.cs" />
     <Compile Include="Module\PerDependencyListenersTest.cs" />
     <Compile Include="Module\AutofacListenerSourceTest.cs" />
     <Compile Include="Module\PublisherModuleTest.cs" />
-    <Compile Include="Module\TestPerDependencyListener.cs" />
+    <Compile Include="Module\TestPerDependencyHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

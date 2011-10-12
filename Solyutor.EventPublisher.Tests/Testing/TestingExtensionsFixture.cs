@@ -15,7 +15,7 @@ namespace Solyutor.EventPublisher.Tests.Testing
             var handler = publisher.CreateTestHandlerFor<FooMessage>();
 
 
-            Assert.That(handler, Is.InstanceOf<TestListener<FooMessage>>());
+            Assert.That(handler, Is.InstanceOf<TestHandler<FooMessage>>());
             Assert.That(publisher.Assignee.ResolveListenersFor<FooMessage>().First(), Is.SameAs(handler));
         }
     }

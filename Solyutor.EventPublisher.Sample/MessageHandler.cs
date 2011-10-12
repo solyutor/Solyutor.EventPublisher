@@ -2,16 +2,16 @@
 
 namespace Solyutor.EventPublisher.Sample
 {
-    public class MessageListener : ITransientListener<HelloMessage>
+    public class MessageHandler : ITransientHandler<HelloMessage>
     {
         private readonly IHellowStrategy _hellowStrategy;
 
-        public MessageListener(IHellowStrategy hellowStrategy)
+        public MessageHandler(IHellowStrategy hellowStrategy)
         {
             _hellowStrategy = hellowStrategy;
         }
 
-        public void ListenTo(HelloMessage message)
+        public void Handle(HelloMessage message)
         {
             _hellowStrategy.SayHello(string.Format("Hello, {0}!", message.Content));
         }

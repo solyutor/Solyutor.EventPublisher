@@ -2,11 +2,11 @@
 
 namespace Solyutor.EventPublisher.Autofac.Tests.Module
 {
-    public class TestPerDependencyListener : IPerDependencyListener<TestMessage>
+    public class TestPerDependencyHandler : IPerDependencyHandler<TestMessage>
     {
         private int _calledTimes;
 
-        public void ListenTo(TestMessage message)
+        public void Handle(TestMessage message)
         {
             _calledTimes++;
         }

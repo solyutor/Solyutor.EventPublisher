@@ -44,7 +44,7 @@
     <Compile Include="..\SolutionVersion.cs">
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
-    <Compile Include="IPerDependencyListener.cs" />
+    <Compile Include="IPerDependencyHandler.cs" />
     <Compile Include="Module\AutofacCompositeListenerSourceSource.cs" />
     <Compile Include="Module\AutofacListenerSource.cs" />
     <Compile Include="Module\PerDependencyListeners.cs" />

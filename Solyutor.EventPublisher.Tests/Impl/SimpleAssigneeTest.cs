@@ -19,7 +19,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
         public void Subscribe_adds_it_to_the_source_so_it_can_be_resolved()
         {
             var assignee = new SimpleAssignee();
-            var listener = new TestListener();
+            var listener = new TestHandler();
             assignee.Subscribe(listener);
 
             var listeners = assignee.ResolveListenersFor<TestMessage>();
@@ -31,7 +31,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
         public void Subscribe_will_not_add_same_object_twice()
         {
             var assignee = new SimpleAssignee();
-            var listener = new TestListener();
+            var listener = new TestHandler();
             assignee.Subscribe(listener);
 
             var listeners = assignee.ResolveListenersFor<TestMessage>();
@@ -43,11 +43,11 @@ namespace Solyutor.EventPublisher.Tests.Impl
         public void Unsubscribe_removes_it_from_source_so_it_could_be_resolved()
         {
             var assignee = new SimpleAssignee();
-            var listener = new TestListener();
+            var listener = new TestHandler();
             assignee.Subscribe(listener);
             assignee.Subscribe(listener);
             
-            var listeners = new List<IListener<TestMessage>>(assignee.ResolveListenersFor<TestMessage>());
+            var listeners = new List<IHandler<TestMessage>>(assignee.ResolveListenersFor<TestMessage>());
 
             Assert.That(listeners.Count, Is.EqualTo(1));
         }
@@ -55,7 +55,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
         [Test]
         public void Unsubscribe_if_not_subscribed_will_be_skipped_silently()
         {
-            new SimpleAssignee().Unsubscribe(new TestListener());
+            new SimpleAssignee().Unsubscribe(new TestHandler());
         }
     }
 
@@ -63,13 +63,13 @@ namespace Solyutor.EventPublisher.Tests.Impl
     {
     }
 
-    public class TestListener : IListener<TestMessage>
+    public class TestHandler : IHandler<TestMessage>
     {
         public TestMessage TestMessage;
 
-        #region IListener<TestMessage> Members
+        #region IHandler<TestMessage> Members
 
-        public void ListenTo(TestMessage message)
+        public void Handle(TestMessage message)
         {
             TestMessage = message;
         }

@@ -62,11 +62,11 @@
     </Compile>
     <Compile Include="Facility\AllTransientListenersTest.cs" />
     <Compile Include="Message.cs" />
-    <Compile Include="TestTransientListener.cs" />
+    <Compile Include="TestTransientHandler.cs" />
     <Compile Include="Facility\TransientSourceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Facility\PublisherFacilityTest.cs" />
-    <Compile Include="TestListener.cs" />
+    <Compile Include="TestHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solyutor.EventPublisher.Castle\Solyutor.EventPublisher.Windsor.csproj">

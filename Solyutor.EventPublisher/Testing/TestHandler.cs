@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace Solyutor.EventPublisher.Testing
 {
-    public class TestListener<TMessage> : IListener<TMessage>
+    public class TestHandler<TMessage> : IHandler<TMessage>
     {
         private readonly List<TMessage> _messages;
 
-        public TestListener()
+        public TestHandler()
         {
             _messages = new List<TMessage>();
         }
@@ -35,7 +35,7 @@ namespace Solyutor.EventPublisher.Testing
             get { return WasCalled == 1; }
         }
 
-        public void ListenTo(TMessage message)
+        public void Handle(TMessage message)
         {
             WasCalled++;
             _messages.Add(message);

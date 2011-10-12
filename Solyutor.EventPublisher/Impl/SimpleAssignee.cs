@@ -30,11 +30,11 @@ namespace Solyutor.EventPublisher.Impl
             }
         }
 
-        public virtual IEnumerable<IListener<TMessage>> ResolveListenersFor<TMessage>()
+        public virtual IEnumerable<IHandler<TMessage>> ResolveListenersFor<TMessage>()
         {
             lock(_latch)
             {
-                return _listeners.OfType<IListener<TMessage>>().ToList();
+                return _listeners.OfType<IHandler<TMessage>>().ToList();
             }
         }
     }

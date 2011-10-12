@@ -18,7 +18,7 @@ namespace Solyutor.EventPublisher.Autofac.Module
                 throw new ArgumentNullException("componentContext");
         }
 
-        public override IEnumerable<IListener<TMessage>> ResolveListenersFor<TMessage>()
+        public override IEnumerable<IHandler<TMessage>> ResolveListenersFor<TMessage>()
         {
             InitializeIfNeeded();
             

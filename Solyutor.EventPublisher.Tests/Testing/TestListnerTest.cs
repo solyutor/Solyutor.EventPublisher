@@ -11,9 +11,9 @@ namespace Solyutor.EventPublisher.Tests.Testing
         [Test]
         public void Handle_CalledOnce_HasRightCorrectProperties()
         {
-            var handler = new TestListener<int>();
+            var handler = new TestHandler<int>();
 
-            handler.ListenTo(10);
+            handler.Handle(10);
 
             handler.Satisfy(h => 
                 h.WasCalled == 1 &&
@@ -25,10 +25,10 @@ namespace Solyutor.EventPublisher.Tests.Testing
         [Test]
         public void Handle_CalledTwice_HasRightCorrectProperties()
         {
-            var handler = new TestListener<int>();
+            var handler = new TestHandler<int>();
 
-            handler.ListenTo(10);
-            handler.ListenTo(15);
+            handler.Handle(10);
+            handler.Handle(15);
 
             handler.Satisfy(h =>
                 h.WasCalled == 2 &&

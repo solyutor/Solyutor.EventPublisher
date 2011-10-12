@@ -1,8 +1,8 @@
 namespace Solyutor.EventPublisher.Castle.Tests
 {
-    public class TestListener : IListener<Message>
+    public class TestHandler : IHandler<Message>
     {
-        public void ListenTo(Message message)
+        public void Handle(Message message)
         {
             Message = message;
         }

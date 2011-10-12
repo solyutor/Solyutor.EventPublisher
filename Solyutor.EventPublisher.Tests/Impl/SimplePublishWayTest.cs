@@ -11,7 +11,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
         {
             var simplePublishWay = new SimplePublishWay();
             var message = new TestMessage();
-            var listener = new TestListener();
+            var listener = new TestHandler();
 
             simplePublishWay.Publish(message, listener);
 

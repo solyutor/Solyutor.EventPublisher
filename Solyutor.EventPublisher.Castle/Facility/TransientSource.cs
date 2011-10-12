@@ -13,9 +13,9 @@ namespace Solyutor.EventPublisher.Windsor.Facility
             _kernel = kernel;
         }
 
-        public virtual IEnumerable<IListener<TMessage>> ResolveListenersFor<TMessage>()
+        public virtual IEnumerable<IHandler<TMessage>> ResolveListenersFor<TMessage>()
         {
-            return _kernel.ResolveAll<ITransientListener<TMessage>>();
+            return _kernel.ResolveAll<ITransientHandler<TMessage>>();
         }
     }
 }

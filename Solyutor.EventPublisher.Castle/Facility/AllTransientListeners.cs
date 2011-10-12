@@ -41,7 +41,7 @@ namespace Solyutor.EventPublisher.Windsor.Facility
         {
             return self.FindInterfaces(
                 (@interface, nomatter) => @interface.IsGenericType &&
-                                          @interface.GetGenericTypeDefinition() == typeof (ITransientListener<>), null);
+                                          @interface.GetGenericTypeDefinition() == typeof (ITransientHandler<>), null);
         }
 
 

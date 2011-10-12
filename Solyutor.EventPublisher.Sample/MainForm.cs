@@ -2,7 +2,7 @@
 
 namespace Solyutor.EventPublisher.Sample
 {
-    public partial class MainForm : Form, IListener<HelloMessage>
+    public partial class MainForm : Form, IHandler<HelloMessage>
     {
         private readonly IAssignee _assignee;
         private readonly IPublisher _publisher;
@@ -20,7 +20,7 @@ namespace Solyutor.EventPublisher.Sample
             _assignee.Subscribe(this);
         }
 
-        public void ListenTo(HelloMessage message)
+        public void Handle(HelloMessage message)
         {
             listBox1.Items.Add(message.Content);
         }

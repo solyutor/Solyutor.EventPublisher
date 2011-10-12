@@ -21,9 +21,9 @@ namespace Solyutor.EventPublisher.Impl
 
         #region IListenerSource Members
 
-        public virtual IEnumerable<IListener<TMessage>> ResolveListenersFor<TMessage>()
+        public virtual IEnumerable<IHandler<TMessage>> ResolveListenersFor<TMessage>()
         {
-            var result = new HashSet<IListener<TMessage>>();
+            var result = new HashSet<IHandler<TMessage>>();
             foreach (var listenerSource in _sources)
             {
                 foreach (var listener in listenerSource.ResolveListenersFor<TMessage>())

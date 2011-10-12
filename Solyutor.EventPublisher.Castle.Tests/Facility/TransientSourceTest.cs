@@ -15,14 +15,14 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         {
             var windsor = new WindsorContainer();
             windsor.Register(
-                Component.For<ITransientListener<Message>>()
-                    .ImplementedBy<TestTransientListener>());
+                Component.For<ITransientHandler<Message>>()
+                    .ImplementedBy<TestTransientHandler>());
             
             var source = new TransientSource(windsor.Kernel);
 
             var listenters = source.ResolveListenersFor<Message>();
 
-            Assert.That(listenters.OfType<ITransientListener<Message>>().Count(), Is.EqualTo(1));
+            Assert.That(listenters.OfType<ITransientHandler<Message>>().Count(), Is.EqualTo(1));
 
         }
     }
