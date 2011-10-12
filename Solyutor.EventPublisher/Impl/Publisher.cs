@@ -20,9 +20,9 @@ namespace Solyutor.EventPublisher.Impl
 
         public virtual void Publish<TMessage>(TMessage message)
         {
-            foreach (var listener in HandlerSource.ResolveListenersFor<TMessage>())
+            foreach (var handler in HandlerSource.ResolveHandlersFor<TMessage>())
             {
-                PublishWay.Publish(message, listener);
+                PublishWay.Publish(message, handler);
             }
         }
     }

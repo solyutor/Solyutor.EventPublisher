@@ -6,31 +6,31 @@ using Solyutor.EventPublisher.Impl;
 
 namespace Solyutor.EventPublisher.Autofac.Module
 {
-    public class AutofacCompositeHandlerSourceSource : CompositeHandlerSource
+    public class AutofacCompositeHandlerSource : CompositeHandlerSource
     {
         private readonly IComponentContext _componentContext;
         private bool _initialized;
 
-        public AutofacCompositeHandlerSourceSource(IComponentContext componentContext)
+        public AutofacCompositeHandlerSource(IComponentContext componentContext)
         {
             _componentContext = componentContext;
             if(componentContext == null)
                 throw new ArgumentNullException("componentContext");
         }
 
-        public override IEnumerable<IHandler<TMessage>> ResolveListenersFor<TMessage>()
+        public override IEnumerable<IHandler<TMessage>> ResolveHandlersFor<TMessage>()
         {
             InitializeIfNeeded();
             
-            return base.ResolveListenersFor<TMessage>();
+            return base.ResolveHandlersFor<TMessage>();
         }
 
         private void InitializeIfNeeded()
         {
             if (_initialized) return;
-            foreach (var listenerSource in _componentContext.Resolve<IEnumerable<IHandlerSource>>().Where(source => source != this))
+            foreach (var handlerSource in _componentContext.Resolve<IEnumerable<IHandlerSource>>().Where(source => source != this))
             {
-                AddSource(listenerSource);
+                AddSource(handlerSource);
             }
             _initialized = true;
         }

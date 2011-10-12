@@ -10,46 +10,46 @@ namespace Solyutor.EventPublisher.Tests.Impl
         [Test]
         public void ResolveListenersFor_should_return_empty_collection_if_no_listners()
         {
-            var listeners = new SimpleAssignee().ResolveListenersFor<TestMessage>();
+            var handlers = new SimpleAssignee().ResolveHandlersFor<TestMessage>();
 
-            Assert.That(listeners, Is.Empty);
+            Assert.That(handlers, Is.Empty);
         }
 
         [Test]
         public void Subscribe_adds_it_to_the_source_so_it_can_be_resolved()
         {
             var assignee = new SimpleAssignee();
-            var listener = new TestHandler();
-            assignee.Subscribe(listener);
+            var handler = new TestHandler();
+            assignee.Subscribe(handler);
 
-            var listeners = assignee.ResolveListenersFor<TestMessage>();
+            var handlers = assignee.ResolveHandlersFor<TestMessage>();
 
-            Assert.That(listeners, Has.Member(listener));
+            Assert.That(handlers, Has.Member(handler));
         }
 
         [Test]
         public void Subscribe_will_not_add_same_object_twice()
         {
             var assignee = new SimpleAssignee();
-            var listener = new TestHandler();
-            assignee.Subscribe(listener);
+            var handler = new TestHandler();
+            assignee.Subscribe(handler);
 
-            var listeners = assignee.ResolveListenersFor<TestMessage>();
+            var handlers = assignee.ResolveHandlersFor<TestMessage>();
 
-            Assert.That(listeners, Has.Member(listener));
+            Assert.That(handlers, Has.Member(handler));
         }
 
         [Test]
         public void Unsubscribe_removes_it_from_source_so_it_could_be_resolved()
         {
             var assignee = new SimpleAssignee();
-            var listener = new TestHandler();
-            assignee.Subscribe(listener);
-            assignee.Subscribe(listener);
+            var handler = new TestHandler();
+            assignee.Subscribe(handler);
+            assignee.Subscribe(handler);
             
-            var listeners = new List<IHandler<TestMessage>>(assignee.ResolveListenersFor<TestMessage>());
+            var handlers = new List<IHandler<TestMessage>>(assignee.ResolveHandlersFor<TestMessage>());
 
-            Assert.That(listeners.Count, Is.EqualTo(1));
+            Assert.That(handlers.Count, Is.EqualTo(1));
         }
 
         [Test]

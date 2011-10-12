@@ -17,7 +17,7 @@ namespace Solyutor.EventPublisher.Sample
 
             var windsor = new WindsorContainer();
 
-            windsor.Register(AllTransientListeners.FromCurrentAssembly());
+            windsor.Register(AllTransientHandlers.FromCurrentAssembly());
 
             windsor.Register(Component.For<MainForm>().LifeStyle.Singleton,
                 Component.For<IHellowStrategy>().ImplementedBy<HellowStrategy>());

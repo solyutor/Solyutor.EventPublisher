@@ -5,36 +5,36 @@ namespace Solyutor.EventPublisher.Impl
 {
     public class SimpleAssignee : IAssignee
     {
-        private readonly ISet<object> _listeners;
+        private readonly ISet<object> _handlers;
         private readonly object _latch;
 
         public SimpleAssignee()
         {
-            _listeners = new HashSet<object>();
+            _handlers = new HashSet<object>();
             _latch = new object();
         }
 
-        public virtual void Subscribe(object listener)
+        public virtual void Subscribe(object handler)
         { 
             lock(_latch)
             {
-                _listeners.Add(listener);
+                _handlers.Add(handler);
             }
         }
 
-        public virtual void Unsubscribe(object listener)
+        public virtual void Unsubscribe(object handler)
         {
             lock (_latch)
             {
-                _listeners.Remove(listener);
+                _handlers.Remove(handler);
             }
         }
 
-        public virtual IEnumerable<IHandler<TMessage>> ResolveListenersFor<TMessage>()
+        public virtual IEnumerable<IHandler<TMessage>> ResolveHandlersFor<TMessage>()
         {
             lock(_latch)
             {
-                return _listeners.OfType<IHandler<TMessage>>().ToList();
+                return _handlers.OfType<IHandler<TMessage>>().ToList();
             }
         }
     }

@@ -12,15 +12,15 @@ namespace Solyutor.EventPublisher.Tests.Impl
         {
             var assignee = new SimpleAssignee();
             var publishWay = new SimplePublishWay();
-            var listener = new TestHandler();
+            var handler = new TestHandler();
             var message = new TestMessage();
             var publisher = new Publisher(assignee, publishWay);
 
-            assignee.Subscribe(listener);
+            assignee.Subscribe(handler);
 
             publisher.Publish(message);
 
-            Assert.That(listener.TestMessage, Is.SameAs(message));
+            Assert.That(handler.TestMessage, Is.SameAs(message));
         }
 
         [Test]

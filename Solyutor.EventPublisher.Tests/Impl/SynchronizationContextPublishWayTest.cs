@@ -21,14 +21,14 @@ namespace Solyutor.EventPublisher.Tests.Impl
 
         private static void AssertDispatchesCall(SynchronizationContextPublishWay publishWay)
         {
-            var listener = new TestHandler();
+            var handler = new TestHandler();
             var message = new TestMessage();
 
-            publishWay.Publish(message, listener);
+            publishWay.Publish(message, handler);
 
             Thread.Sleep(10); //Wait for async call
 
-            Assert.That(listener.TestMessage, Is.SameAs(message));
+            Assert.That(handler.TestMessage, Is.SameAs(message));
         }
     }
 }

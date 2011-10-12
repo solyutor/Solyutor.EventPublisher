@@ -54,7 +54,7 @@
     <Compile Include="..\SolutionVersion.cs">
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
-    <Compile Include="Impl\CompositeListenerSourceTest.cs" />
+    <Compile Include="Impl\CompositeHandlerSourceTest.cs" />
     <Compile Include="Impl\PublisherTest.cs" />
     <Compile Include="Impl\SimpleAssigneeTest.cs" />
     <Compile Include="Impl\SimplePublishWayTest.cs" />

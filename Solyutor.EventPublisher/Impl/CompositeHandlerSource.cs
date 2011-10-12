@@ -11,24 +11,24 @@ namespace Solyutor.EventPublisher.Impl
             _sources = new HashSet<IHandlerSource>();
         }
 
-        public CompositeHandlerSource(IEnumerable<IHandlerSource> listenerSources) : this()
+        public CompositeHandlerSource(IEnumerable<IHandlerSource> handlerSources) : this()
         {
-            foreach (var listenerSource in listenerSources)
+            foreach (var handlerSource in handlerSources)
             {
-                AddSource(listenerSource);
+                AddSource(handlerSource);
             }
         }
 
         #region IHandlerSource Members
 
-        public virtual IEnumerable<IHandler<TMessage>> ResolveListenersFor<TMessage>()
+        public virtual IEnumerable<IHandler<TMessage>> ResolveHandlersFor<TMessage>()
         {
             var result = new HashSet<IHandler<TMessage>>();
-            foreach (var listenerSource in _sources)
+            foreach (var handlerSource in _sources)
             {
-                foreach (var listener in listenerSource.ResolveListenersFor<TMessage>())
+                foreach (var handler in handlerSource.ResolveHandlersFor<TMessage>())
                 {
-                    result.Add(listener);
+                    result.Add(handler);
                 }
             }
             return result;

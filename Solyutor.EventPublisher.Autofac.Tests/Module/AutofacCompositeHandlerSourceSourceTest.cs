@@ -28,7 +28,7 @@ namespace Solyutor.EventPublisher.Autofac.Tests.Module
             var listenerSource = container.Resolve<IHandlerSource>();
 
             
-            var listeners = listenerSource.ResolveListenersFor<TestMessage>();
+            var listeners = listenerSource.ResolveHandlersFor<TestMessage>();
 
             listeners.Satisfy(l =>
                 l.Count() == 2 && 

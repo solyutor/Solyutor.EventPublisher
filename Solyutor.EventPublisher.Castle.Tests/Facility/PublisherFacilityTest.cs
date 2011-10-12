@@ -52,14 +52,10 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
 
         private static void TestFacility(WindsorContainer windsor)
         {
-            
+            var handler = new TestHandler();
 
-            var listener = new TestHandler();
-
-
-            windsor.Resolve<IAssignee>().Subscribe(listener);
+            windsor.Resolve<IAssignee>().Subscribe(handler);
             windsor.Register(Component.For<TestTransientHandler>());
-
 
             var publisher = windsor.Resolve<IPublisher>();
             var message = new Message();
@@ -67,7 +63,7 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
             publisher.Publish(message);
 
             message.Satisfy(m =>
-                            m == listener.Message &&
+                            m == handler.Message &&
                             m == TestTransientHandler.StaticMessage);
         }
     }

@@ -65,8 +65,8 @@
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
     <Compile Include="Module\AutofacCompositeHandlerSourceSourceTest.cs" />
-    <Compile Include="Module\PerDependencyListenersTest.cs" />
-    <Compile Include="Module\AutofacListenerSourceTest.cs" />
+    <Compile Include="Module\PerDependencyHandlersTest.cs" />
+    <Compile Include="Module\AutofacHandlerSourceTest.cs" />
     <Compile Include="Module\PublisherModuleTest.cs" />
     <Compile Include="Module\TestPerDependencyHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

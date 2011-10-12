@@ -32,7 +32,7 @@ namespace Solyutor.EventPublisher.Autofac.Module
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
-            builder.RegisterType<AutofacCompositeHandlerSourceSource>()
+            builder.RegisterType<AutofacCompositeHandlerSource>()
                 .AsImplementedInterfaces()
                 .SingleInstance();
             

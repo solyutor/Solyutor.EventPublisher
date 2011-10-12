@@ -9,14 +9,14 @@ using Solyutor.EventPublisher.Windsor.Facility;
 namespace Solyutor.EventPublisher.Castle.Tests.Facility
 {
     [TestFixture]
-    public class AllTransientListenersTest
+    public class AllTransientHandlersTest
     {
         [Test]
         public void Can_register_all_transient_listenter_from_current_assembly()
         {
             var windsor = new WindsorContainer();
 
-            windsor.Register(AllTransientListeners.FromCurrentAssembly());
+            windsor.Register(AllTransientHandlers.FromCurrentAssembly());
 
             AssertRegistration(windsor);
         }
@@ -26,7 +26,7 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         {
             var windsor = new WindsorContainer();
 
-            windsor.Register(AllTransientListeners.From(Assembly.GetExecutingAssembly()));
+            windsor.Register(AllTransientHandlers.From(Assembly.GetExecutingAssembly()));
 
             AssertRegistration(windsor);
 
@@ -37,7 +37,7 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         {
             var windsor = new WindsorContainer();
 
-            windsor.Register(AllTransientListeners.From(new[] {Assembly.GetExecutingAssembly()}));
+            windsor.Register(AllTransientHandlers.From(new[] {Assembly.GetExecutingAssembly()}));
 
             AssertRegistration(windsor);
 

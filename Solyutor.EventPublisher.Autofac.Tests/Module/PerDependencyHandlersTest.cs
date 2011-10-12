@@ -7,7 +7,7 @@ using Solyutor.EventPublisher.Tests.Impl;
 namespace Solyutor.EventPublisher.Autofac.Tests.Module
 {
     [TestFixture]
-    public class PerDependencyListenersTest
+    public class PerDependencyHandlersTest
     {
         private ContainerBuilder _builder;
         private IContainer _container;

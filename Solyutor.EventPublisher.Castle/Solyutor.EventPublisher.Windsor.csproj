@@ -45,7 +45,7 @@
     <Compile Include="..\SolutionVersion.cs">
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
-    <Compile Include="Facility\AllTransientListeners.cs" />
+    <Compile Include="Facility\AllTransientHandlers.cs" />
     <Compile Include="Facility\PublisherFacility.cs" />
     <Compile Include="Facility\TransientSource.cs" />
     <Compile Include="ITransientHandler.cs" />

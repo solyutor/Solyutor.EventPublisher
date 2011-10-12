@@ -16,7 +16,7 @@ namespace Solyutor.EventPublisher.Autofac.Module
                 throw  new ArgumentNullException("componentContext");
         }
 
-        public IEnumerable<IHandler<TMessage>> ResolveListenersFor<TMessage>()
+        public IEnumerable<IHandler<TMessage>> ResolveHandlersFor<TMessage>()
         {
             return _componentContext.Resolve<IEnumerable<IHandler<TMessage>>>();
         }

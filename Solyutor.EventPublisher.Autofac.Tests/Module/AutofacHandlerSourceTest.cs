@@ -7,7 +7,7 @@ using Solyutor.EventPublisher.Tests.Impl;
 namespace Solyutor.EventPublisher.Autofac.Tests.Module
 {
     [TestFixture]
-    public class AutofacListenerSourceTest
+    public class AutofacHandlerSourceTest
     {
         [Test]
         public void Resolve_returns_transient_instances_from_kernel()
@@ -18,7 +18,7 @@ namespace Solyutor.EventPublisher.Autofac.Tests.Module
 
             var source = new AutofacHandlerSource(container);
 
-            var listenters = source.ResolveListenersFor<TestMessage>();
+            var listenters = source.ResolveHandlersFor<TestMessage>();
 
             Assert.That(listenters.OfType<IPerDependencyHandler<TestMessage>>().Count(), Is.EqualTo(1));
         }

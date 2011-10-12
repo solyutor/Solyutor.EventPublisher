@@ -4,17 +4,17 @@ using Autofac;
 
 namespace Solyutor.EventPublisher.Autofac.Module
 {
-    public static class PerDependencyListeners
+    public static class PerDependencyHandlers
     {
          public static void RegisterPerDependencyListenersFrom(this ContainerBuilder builder, params Assembly[] assemblies)
          {
              builder.RegisterAssemblyTypes(assemblies)
-                 .Where(type => type.IsPerDependencyListener())
+                 .Where(type => type.IsPerDependencyHandler())
                  .AsClosedTypesOf(typeof(IHandler<>))
                  .InstancePerDependency();
          }
 
-         private static bool IsPerDependencyListener(this Type self)
+         private static bool IsPerDependencyHandler(this Type self)
         {
             var interfaces = self.FindInterfaces(
                 (@interface, nomatter) => @interface.IsGenericType &&

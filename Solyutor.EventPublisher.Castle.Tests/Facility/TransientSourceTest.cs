@@ -20,9 +20,9 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
             
             var source = new TransientSource(windsor.Kernel);
 
-            var listenters = source.ResolveListenersFor<Message>();
+            var handlers = source.ResolveHandlersFor<Message>();
 
-            Assert.That(listenters.OfType<ITransientHandler<Message>>().Count(), Is.EqualTo(1));
+            Assert.That(handlers.OfType<ITransientHandler<Message>>().Count(), Is.EqualTo(1));
 
         }
     }

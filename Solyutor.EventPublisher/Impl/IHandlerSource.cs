@@ -3,6 +3,6 @@ namespace Solyutor.EventPublisher.Impl
 {
     public interface IHandlerSource
     {
-        IEnumerable<IHandler<TMessage>> ResolveListenersFor<TMessage>();
+        IEnumerable<IHandler<TMessage>> ResolveHandlersFor<TMessage>();
     }
 }

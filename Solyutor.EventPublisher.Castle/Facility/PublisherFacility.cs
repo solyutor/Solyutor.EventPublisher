@@ -24,7 +24,8 @@ namespace Solyutor.EventPublisher.Windsor.Facility
             RegisterAssignee();
 
             Kernel.Register(
-                Component.For<IPublisher>().UsingFactoryMethod(CreatePublisher));
+                Component.For<IPublisher>()
+                .UsingFactoryMethod(CreatePublisher));
         }
 
         protected virtual IPublishWay ResolvePublishWay()
@@ -42,7 +43,9 @@ namespace Solyutor.EventPublisher.Windsor.Facility
         {
             if (Kernel.HasComponent(typeof (IAssignee))) return;
             Kernel.Register(
-                Component.For<IAssignee, IHandlerSource>().Instance(new SimpleAssignee()));
+                Component.For<IAssignee, IHandlerSource>()
+                .Instance(new SimpleAssignee())
+                .LifeStyle.Singleton);
         }
 
         protected virtual IPublisher CreatePublisher()

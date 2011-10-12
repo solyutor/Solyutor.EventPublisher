@@ -4,8 +4,8 @@ namespace Solyutor.EventPublisher
 {
     public interface IAssignee : IHandlerSource
     {
-        void Subscribe(object listener);
+        void Subscribe(object handler);
 
-        void Unsubscribe(object listener);
+        void Unsubscribe(object handler);
     }
 }

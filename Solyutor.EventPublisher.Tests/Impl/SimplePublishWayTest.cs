@@ -11,11 +11,11 @@ namespace Solyutor.EventPublisher.Tests.Impl
         {
             var simplePublishWay = new SimplePublishWay();
             var message = new TestMessage();
-            var listener = new TestHandler();
+            var handler = new TestHandler();
 
-            simplePublishWay.Publish(message, listener);
+            simplePublishWay.Publish(message, handler);
 
-            Assert.That(listener.TestMessage, Is.SameAs(message));
+            Assert.That(handler.TestMessage, Is.SameAs(message));
         }
     }
 }
