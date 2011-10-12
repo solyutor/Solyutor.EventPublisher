@@ -8,14 +8,14 @@ namespace Solyutor.EventPublisher.Tests.Impl
     [TestFixture]
     public class CompositeListenerSourceTest
     {
-        private CompositeListenerSource _compositeSource;
+        private CompositeHandlerSource _compositeSource;
         private SimpleAssignee _firstSource;
         private SimpleAssignee _secondSource;
 
         [SetUp]
         public void SetUp()
         {
-            _compositeSource = new CompositeListenerSource();
+            _compositeSource = new CompositeHandlerSource();
 
             _firstSource = new SimpleAssignee();
             _secondSource = new SimpleAssignee();
@@ -74,7 +74,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
         [Test]
         public void Constructor_add_all_sources()
         {
-            _compositeSource = new CompositeListenerSource(new[]{_firstSource, _secondSource});
+            _compositeSource = new CompositeHandlerSource(new[]{_firstSource, _secondSource});
 
             var firstListener = new TestHandler();
             var secondListener = new TestHandler();

@@ -2,7 +2,7 @@
 
 namespace Solyutor.EventPublisher
 {
-    public interface IAssignee : IListenerSource
+    public interface IAssignee : IHandlerSource
     {
         void Subscribe(object listener);
 

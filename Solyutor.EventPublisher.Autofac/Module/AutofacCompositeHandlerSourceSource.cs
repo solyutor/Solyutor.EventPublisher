@@ -6,12 +6,12 @@ using Solyutor.EventPublisher.Impl;
 
 namespace Solyutor.EventPublisher.Autofac.Module
 {
-    public class AutofacCompositeListenerSourceSource : CompositeListenerSource
+    public class AutofacCompositeHandlerSourceSource : CompositeHandlerSource
     {
         private readonly IComponentContext _componentContext;
         private bool _initialized;
 
-        public AutofacCompositeListenerSourceSource(IComponentContext componentContext)
+        public AutofacCompositeHandlerSourceSource(IComponentContext componentContext)
         {
             _componentContext = componentContext;
             if(componentContext == null)
@@ -28,7 +28,7 @@ namespace Solyutor.EventPublisher.Autofac.Module
         private void InitializeIfNeeded()
         {
             if (_initialized) return;
-            foreach (var listenerSource in _componentContext.Resolve<IEnumerable<IListenerSource>>().Where(source => source != this))
+            foreach (var listenerSource in _componentContext.Resolve<IEnumerable<IHandlerSource>>().Where(source => source != this))
             {
                 AddSource(listenerSource);
             }

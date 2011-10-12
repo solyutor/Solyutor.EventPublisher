@@ -28,11 +28,11 @@ namespace Solyutor.EventPublisher.Autofac.Module
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
-            builder.RegisterType<AutofacListenerSource>()
+            builder.RegisterType<AutofacHandlerSource>()
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
-            builder.RegisterType<AutofacCompositeListenerSourceSource>()
+            builder.RegisterType<AutofacCompositeHandlerSourceSource>()
                 .AsImplementedInterfaces()
                 .SingleInstance();
             

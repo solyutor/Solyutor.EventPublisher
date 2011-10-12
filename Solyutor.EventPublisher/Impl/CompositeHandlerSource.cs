@@ -2,16 +2,16 @@
 
 namespace Solyutor.EventPublisher.Impl
 {
-    public class CompositeListenerSource : IListenerSource
+    public class CompositeHandlerSource : IHandlerSource
     {
-        private readonly ISet<IListenerSource> _sources;
+        private readonly ISet<IHandlerSource> _sources;
 
-        public CompositeListenerSource()
+        public CompositeHandlerSource()
         {
-            _sources = new HashSet<IListenerSource>();
+            _sources = new HashSet<IHandlerSource>();
         }
 
-        public CompositeListenerSource(IEnumerable<IListenerSource> listenerSources) : this()
+        public CompositeHandlerSource(IEnumerable<IHandlerSource> listenerSources) : this()
         {
             foreach (var listenerSource in listenerSources)
             {
@@ -19,7 +19,7 @@ namespace Solyutor.EventPublisher.Impl
             }
         }
 
-        #region IListenerSource Members
+        #region IHandlerSource Members
 
         public virtual IEnumerable<IHandler<TMessage>> ResolveListenersFor<TMessage>()
         {
@@ -36,14 +36,14 @@ namespace Solyutor.EventPublisher.Impl
 
         #endregion
 
-        public virtual void AddSource(IListenerSource listenerSource)
+        public virtual void AddSource(IHandlerSource handlerSource)
         {
-            _sources.Add(listenerSource);
+            _sources.Add(handlerSource);
         }
 
-        public virtual void RemoveSource(IListenerSource listenerSource)
+        public virtual void RemoveSource(IHandlerSource handlerSource)
         {
-            _sources.Remove(listenerSource);
+            _sources.Remove(handlerSource);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Solyutor.EventPublisher.Autofac.Tests.Module
             builder.RegisterType<TestPerDependencyHandler>().AsImplementedInterfaces();
             var container = builder.Build();
 
-            var source = new AutofacListenerSource(container);
+            var source = new AutofacHandlerSource(container);
 
             var listenters = source.ResolveListenersFor<TestMessage>();
 

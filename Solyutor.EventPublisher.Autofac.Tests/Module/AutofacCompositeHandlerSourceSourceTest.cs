@@ -25,7 +25,7 @@ namespace Solyutor.EventPublisher.Autofac.Tests.Module
             var assigne = container.Resolve<IAssignee>();
             assigne.Subscribe(this);
 
-            var listenerSource = container.Resolve<IListenerSource>();
+            var listenerSource = container.Resolve<IHandlerSource>();
 
             
             var listeners = listenerSource.ResolveListenersFor<TestMessage>();

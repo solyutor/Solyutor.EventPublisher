@@ -42,16 +42,16 @@ namespace Solyutor.EventPublisher.Windsor.Facility
         {
             if (Kernel.HasComponent(typeof (IAssignee))) return;
             Kernel.Register(
-                Component.For<IAssignee, IListenerSource>().Instance(new SimpleAssignee()));
+                Component.For<IAssignee, IHandlerSource>().Instance(new SimpleAssignee()));
         }
 
         protected virtual IPublisher CreatePublisher()
         {
             var publishWay = ResolvePublishWay();
 
-            var sources = new List<IListenerSource>(Kernel.ResolveAll<IListenerSource>()) {new TransientSource(Kernel)};
+            var sources = new List<IHandlerSource>(Kernel.ResolveAll<IHandlerSource>()) {new TransientSource(Kernel)};
 
-            var compositeSource = new CompositeListenerSource(sources);
+            var compositeSource = new CompositeHandlerSource(sources);
 
             return new Publisher(compositeSource, publishWay);
         }

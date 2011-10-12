@@ -5,11 +5,11 @@ using Solyutor.EventPublisher.Impl;
 
 namespace Solyutor.EventPublisher.Autofac.Module
 {
-    public class AutofacListenerSource : IListenerSource
+    public class AutofacHandlerSource : IHandlerSource
     {
         private readonly IComponentContext _componentContext;
 
-        public AutofacListenerSource(IComponentContext componentContext)
+        public AutofacHandlerSource(IComponentContext componentContext)
         {
             _componentContext = componentContext;
             if(componentContext == null)

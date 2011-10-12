@@ -4,7 +4,7 @@ using Solyutor.EventPublisher.Impl;
 
 namespace Solyutor.EventPublisher.Windsor.Facility
 {
-    public class TransientSource : IListenerSource
+    public class TransientSource : IHandlerSource
     {
         private readonly IKernel _kernel;
 
