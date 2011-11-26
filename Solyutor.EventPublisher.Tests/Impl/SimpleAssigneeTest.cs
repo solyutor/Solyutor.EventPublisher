@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
+using SharpTestsEx;
 using Solyutor.EventPublisher.Impl;
 
 namespace Solyutor.EventPublisher.Tests.Impl
@@ -53,6 +55,23 @@ namespace Solyutor.EventPublisher.Tests.Impl
         }
 
         [Test]
+        public void Returns_same_object_for_different_handlers()
+        {
+            var assignee = new SimpleAssignee();
+            var handler = new MultiHandler();
+
+            assignee.Subscribe(handler);
+
+            var messageHandlers = assignee.ResolveHandlersFor<TestMessage>();
+            var anotherMessageHandlers = assignee.ResolveHandlersFor<AnotherMessage>();
+
+            handler.Satisfy(h =>
+                            messageHandlers.Contains(h) &&
+                            anotherMessageHandlers.Contains(h));
+
+        }
+
+        [Test]
         public void Unsubscribe_if_not_subscribed_will_be_skipped_silently()
         {
             new SimpleAssignee().Unsubscribe(new TestHandler());
@@ -61,6 +80,11 @@ namespace Solyutor.EventPublisher.Tests.Impl
 
     public class TestMessage
     {
+    }
+
+    public class AnotherMessage
+    {
+        
     }
 
     public class TestHandler : IHandler<TestMessage>
@@ -75,5 +99,15 @@ namespace Solyutor.EventPublisher.Tests.Impl
         }
 
         #endregion
+    }
+
+    public class MultiHandler : TestHandler, IHandler<AnotherMessage>
+    {
+        public AnotherMessage AnotherMessage;
+
+        public void Handle(AnotherMessage message)
+        {
+            AnotherMessage = message;
+        }
     }
 }
