@@ -53,6 +53,7 @@ namespace Solyutor.EventPublisher.Windsor.Facility
             var publishWay = ResolvePublishWay();
 
             var sources = new List<IHandlerSource>(Kernel.ResolveAll<IHandlerSource>()) {new TransientSource(Kernel)};
+            sources.AddRange(Kernel.ResolveAll<IAssignee>());
 
             var compositeSource = new CompositeHandlerSource(sources);
 

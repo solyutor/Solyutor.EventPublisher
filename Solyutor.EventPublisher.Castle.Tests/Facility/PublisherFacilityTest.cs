@@ -4,6 +4,7 @@ using Castle.Windsor;
 using NUnit.Framework;
 using SharpTestsEx;
 using Solyutor.EventPublisher.Impl;
+using Solyutor.EventPublisher.Windsor;
 using Solyutor.EventPublisher.Windsor.Facility;
 
 namespace Solyutor.EventPublisher.Castle.Tests.Facility
@@ -55,7 +56,7 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
             var handler = new TestHandler();
 
             windsor.Resolve<IAssignee>().Subscribe(handler);
-            windsor.Register(Component.For<TestTransientHandler>());
+            windsor.Register(Component.For<ITransientHandler<Message>>().ImplementedBy<TestTransientHandler>());
 
             var publisher = windsor.Resolve<IPublisher>();
             var message = new Message();
