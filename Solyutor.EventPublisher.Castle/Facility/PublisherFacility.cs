@@ -8,15 +8,15 @@ namespace Solyutor.EventPublisher.Windsor.Facility
 {
     public class PublisherFacility : AbstractFacility
     {
-        private readonly IPublishWay _publishWay;
+        private readonly IDispatcher _dispatcher;
 
         public PublisherFacility()
         {
         }
 
-        public PublisherFacility(IPublishWay publishWay)
+        public PublisherFacility(IDispatcher dispatcher)
         {
-            _publishWay = publishWay;
+            _dispatcher = dispatcher;
         }
 
         protected override void Init()
@@ -28,13 +28,13 @@ namespace Solyutor.EventPublisher.Windsor.Facility
                 .UsingFactoryMethod(CreatePublisher));
         }
 
-        protected virtual IPublishWay ResolvePublishWay()
+        protected virtual IDispatcher ResolvePublishWay()
         {
-            IPublishWay result = Kernel.HasComponent(typeof (IPublishWay)) ? Kernel.Resolve<IPublishWay>() : _publishWay;
+            IDispatcher result = Kernel.HasComponent(typeof (IDispatcher)) ? Kernel.Resolve<IDispatcher>() : _dispatcher;
 
             if (result == null)
                 throw new InvalidOperationException(
-                    "Publisher facility needs an instance of IPublishWay. Supply it using PublishFacility constructor or register it with container.");
+                    "Publisher facility needs an instance of IDispatcher. Supply it using PublishFacility constructor or register it with container.");
 
             return result;
         }

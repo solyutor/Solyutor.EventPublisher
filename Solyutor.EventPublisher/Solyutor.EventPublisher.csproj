@@ -54,11 +54,11 @@
     <Compile Include="IAssignee.cs" />
     <Compile Include="Impl\CompositeHandlerSource.cs" />
     <Compile Include="Impl\IHandlerSource.cs" />
-    <Compile Include="Impl\IPublishWay.cs" />
+    <Compile Include="Impl\IDispatcher.cs" />
     <Compile Include="Impl\Publisher.cs" />
     <Compile Include="Impl\SimpleAssignee.cs" />
-    <Compile Include="Impl\SimplePublishWay.cs" />
-    <Compile Include="Impl\SynchronizationContextPublishWay.cs" />
+    <Compile Include="Impl\SimpleDispatcher.cs" />
+    <Compile Include="Impl\SynchronizationContextDispatcher.cs" />
     <Compile Include="IPublisher.cs" />
     <Compile Include="IHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

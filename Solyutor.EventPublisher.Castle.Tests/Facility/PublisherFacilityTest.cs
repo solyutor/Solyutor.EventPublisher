@@ -16,7 +16,7 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         public void Facility_after_init_register_all_needed_services()
         {
             var windsor = new WindsorContainer();
-            windsor.Register(Component.For<IPublishWay>().ImplementedBy<SimplePublishWay>());
+            windsor.Register(Component.For<IDispatcher>().ImplementedBy<SimpleDispatcher>());
             windsor.AddFacility<PublisherFacility>();
 
             TestFacility(windsor);
@@ -26,7 +26,7 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         public void Facility_after_init_with_publishway_register_all_needed_services()
         {
             var windsor = new WindsorContainer();
-            windsor.AddFacility("PublisherFacility", new PublisherFacility(new SimplePublishWay()));
+            windsor.AddFacility("PublisherFacility", new PublisherFacility(new SimpleDispatcher()));
 
             TestFacility(windsor);
         }
@@ -36,7 +36,7 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         {
             var windsor = new WindsorContainer();
             windsor.Register(Component.For<IAssignee>().ImplementedBy<SimpleAssignee>());
-            windsor.AddFacility("PublisherFacility", new PublisherFacility(new SimplePublishWay()));
+            windsor.AddFacility("PublisherFacility", new PublisherFacility(new SimpleDispatcher()));
 
             TestFacility(windsor);
         }

@@ -1,6 +1,6 @@
 ﻿namespace Solyutor.EventPublisher.Impl
 {
-    public class SimplePublishWay : IPublishWay
+    public class SimpleDispatcher : IDispatcher
     {
         public virtual void Publish<TMessage>(TMessage message, IHandler<TMessage> handler)
         {

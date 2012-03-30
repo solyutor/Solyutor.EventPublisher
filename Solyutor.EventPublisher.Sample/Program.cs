@@ -22,7 +22,7 @@ namespace Solyutor.EventPublisher.Sample
             windsor.Register(Component.For<MainForm>().LifeStyle.Singleton,
                 Component.For<IHellowStrategy>().ImplementedBy<HellowStrategy>());
 
-            windsor.AddFacility("Event.Publisher", new PublisherFacility(new SimplePublishWay()));
+            windsor.AddFacility("Event.Publisher", new PublisherFacility(new SimpleDispatcher()));
 
 
             Application.Run(windsor.Resolve<MainForm>());

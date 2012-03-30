@@ -35,7 +35,7 @@ namespace Solyutor.EventPublisher.Autofac.Tests.Module
         private static IContainer BuildContainer()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterModule(new PublisherModule(new SimplePublishWay()));
+            builder.RegisterModule(new PublisherModule(new SimpleDispatcher()));
             var container = builder.Build();
             return container;
         }

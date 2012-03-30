@@ -9,7 +9,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
         [Test]
         public void Publish_calls_the_method_on_subscriber()
         {
-            var simplePublishWay = new SimplePublishWay();
+            var simplePublishWay = new SimpleDispatcher();
             var message = new TestMessage();
             var handler = new TestHandler();
 

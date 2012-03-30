@@ -6,7 +6,7 @@ namespace Solyutor.EventPublisher.Testing
     {
         public IAssignee Assignee { get { return (IAssignee) HandlerSource; } }
         
-        public TestPublisher() : base(new SimpleAssignee(), new SimplePublishWay())
+        public TestPublisher() : base(new SimpleAssignee(), new SimpleDispatcher())
         {
             
         }

@@ -8,21 +8,21 @@ namespace Solyutor.EventPublisher.Autofac.Module
 {
     public class PublisherModule : AutofacModule
     {
-        private readonly IPublishWay _publishWay;
+        private readonly IDispatcher _dispatcher;
 
-        public PublisherModule(IPublishWay publishWay)
+        public PublisherModule(IDispatcher dispatcher)
         {
-            if (publishWay == null)
+            if (dispatcher == null)
             {
-                throw new ArgumentNullException("publishWay");
+                throw new ArgumentNullException("dispatcher");
             }
 
-            _publishWay = publishWay;
+            _dispatcher = dispatcher;
         }
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterInstance(_publishWay).As<IPublishWay>().SingleInstance();
+            builder.RegisterInstance(_dispatcher).As<IDispatcher>().SingleInstance();
             
             builder.RegisterType<SimpleAssignee>()
                 .AsImplementedInterfaces()

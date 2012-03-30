@@ -2,11 +2,11 @@ using System.Threading;
 
 namespace Solyutor.EventPublisher.Impl
 {
-    public class SynchronizationContextPublishWay : IPublishWay
+    public class SynchronizationContextDispatcher : IDispatcher
     {
         private readonly SynchronizationContext _synchronizationContext;
 
-        public SynchronizationContextPublishWay(SynchronizationContext synchronizationContext)
+        public SynchronizationContextDispatcher(SynchronizationContext synchronizationContext)
         {
             _synchronizationContext = synchronizationContext;
         }
@@ -17,10 +17,10 @@ namespace Solyutor.EventPublisher.Impl
         }
     }
 
-    public class SynchronizationContextPublishWay<TSynchornizationContext> : SynchronizationContextPublishWay
+    public class SynchronizationContextDispatcher<TSynchornizationContext> : SynchronizationContextDispatcher
         where TSynchornizationContext : SynchronizationContext, new()
     {
-        public SynchronizationContextPublishWay()
+        public SynchronizationContextDispatcher()
             : base(new TSynchornizationContext())
         {
         }

@@ -17,7 +17,7 @@ namespace Solyutor.EventPublisher.Autofac.Tests.Module
         {
             var builder = new ContainerBuilder();
         
-            builder.RegisterModule(new PublisherModule(new SimplePublishWay()));
+            builder.RegisterModule(new PublisherModule(new SimpleDispatcher()));
             builder.RegisterPerDependencyListenersFrom(Assembly.GetExecutingAssembly());
 
             var container = builder.Build();

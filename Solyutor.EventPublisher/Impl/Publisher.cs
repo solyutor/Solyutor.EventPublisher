@@ -5,24 +5,24 @@ namespace Solyutor.EventPublisher.Impl
     public class Publisher : IPublisher
     {
         protected readonly IHandlerSource HandlerSource;
-        protected readonly IPublishWay PublishWay;
+        protected readonly IDispatcher Dispatcher;
 
-        public Publisher(IHandlerSource handlerSource, IPublishWay publishWay)
+        public Publisher(IHandlerSource handlerSource, IDispatcher dispatcher)
         {
             if(handlerSource == null) 
                 throw new ArgumentNullException("handlerSource");
-            if(publishWay == null)
-                throw new ArgumentNullException("publishWay");
+            if(dispatcher == null)
+                throw new ArgumentNullException("dispatcher");
 
             HandlerSource = handlerSource;
-            PublishWay = publishWay;
+            Dispatcher = dispatcher;
         }
 
         public virtual void Publish<TMessage>(TMessage message)
         {
             foreach (var handler in HandlerSource.ResolveHandlersFor<TMessage>())
             {
-                PublishWay.Publish(message, handler);
+                Dispatcher.Publish(message, handler);
             }
         }
     }

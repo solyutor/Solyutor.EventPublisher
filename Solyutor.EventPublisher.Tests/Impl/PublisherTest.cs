@@ -11,7 +11,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
         public void Publish_will_send_the_message_to_listner()
         {
             var assignee = new SimpleAssignee();
-            var publishWay = new SimplePublishWay();
+            var publishWay = new SimpleDispatcher();
             var handler = new TestHandler();
             var message = new TestMessage();
             var publisher = new Publisher(assignee, publishWay);
@@ -34,7 +34,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
         [ExpectedException(typeof(ArgumentNullException))]
         public void Contstructor_will_throw_if_listnersource_is_null()
         {
-            new Publisher(null, new SimplePublishWay());
+            new Publisher(null, new SimpleDispatcher());
         }
     }
 }
