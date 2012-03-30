@@ -12,6 +12,8 @@
     <AssemblyName>Solyutor.EventPublisher</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Solyutor.EventPublisher\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -78,6 +80,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
     <Exec Condition="!Exists('$(SolutionDir)\SolutionVersion.cs')" Command="echo //DO NOT EDIT &gt; $(SolutionDir)\SolutionVersion.cs" />
-    <Exec Condition="Exists('$(ProjectDir)packages.config')" Command="&quot;$(SolutionDir)lib\NuGet\nuget.exe&quot; install &quot;$(ProjectDir)packages.config&quot; -o &quot;$(SolutionDir)Packages&quot;" />
   </Target>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
 </Project>

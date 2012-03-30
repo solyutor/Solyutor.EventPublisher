@@ -12,6 +12,8 @@
     <AssemblyName>Solyutor.EventPublisher.Castle.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Solyutor.EventPublisher\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -80,7 +82,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Solyutor.EventPublisher.Castle\Solyutor.EventPublisher.Windsor.csproj">
       <Project>{F484E1F4-0BFF-4023-BA69-129F19D4F2B8}</Project>
-      <Name>Solyutor.EventPublisher.Castle</Name>
+      <Name>Solyutor.EventPublisher.Windsor</Name>
     </ProjectReference>
     <ProjectReference Include="..\Solyutor.EventPublisher\Solyutor.EventPublisher.csproj">
       <Project>{EE246FD5-222B-43F8-BE54-B3FD6A371240}</Project>
@@ -95,7 +97,5 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="BeforeBuild">
-    <Exec Condition="Exists('$(ProjectDir)packages.config')" Command="&quot;$(SolutionDir)lib\NuGet\nuget.exe&quot; install &quot;$(ProjectDir)packages.config&quot; -o &quot;$(SolutionDir)Packages&quot;" />
-  </Target>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
 </Project>
