@@ -24,7 +24,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
             var handler = new TestHandler();
             var message = new TestMessage();
 
-            dispatcher.Publish(message, handler);
+            dispatcher.Invoke(message, handler);
 
             Thread.Sleep(10); //Wait for async call
 

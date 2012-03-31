@@ -22,7 +22,7 @@ namespace Solyutor.EventPublisher.Impl
         {
             foreach (var handler in HandlerSource.ResolveHandlersFor<TMessage>())
             {
-                Dispatcher.Publish(message, handler);
+                Dispatcher.Invoke(message, handler);
             }
         }
     }

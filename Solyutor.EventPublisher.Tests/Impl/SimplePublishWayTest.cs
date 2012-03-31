@@ -13,7 +13,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
             var message = new TestMessage();
             var handler = new TestHandler();
 
-            simplePublishWay.Publish(message, handler);
+            simplePublishWay.Invoke(message, handler);
 
             Assert.That(handler.TestMessage, Is.SameAs(message));
         }
