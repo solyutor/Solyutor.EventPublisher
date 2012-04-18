@@ -28,3 +28,4 @@ _ReSharper*/
 code_drop*/
 build_output*/
 SolutionVersion.cs
+*.ncrunch*
