@@ -26,7 +26,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
 
             dispatcher.Invoke(message, handler);
 
-            Thread.Sleep(10); //Wait for async call
+            handler.Called.WaitOne(1000);
 
             Assert.That(handler.TestMessage, Is.SameAs(message));
         }

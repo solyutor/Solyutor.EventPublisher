@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using NUnit.Framework;
 using SharpTestsEx;
 using Solyutor.EventPublisher.Impl;
@@ -90,12 +91,19 @@ namespace Solyutor.EventPublisher.Tests.Impl
     public class TestHandler : IHandler<TestMessage>
     {
         public TestMessage TestMessage;
+        public readonly ManualResetEvent Called;
 
         #region IHandler<TestMessage> Members
+
+        public TestHandler()
+        {
+            Called = new ManualResetEvent(false);
+        }
 
         public void Handle(TestMessage message)
         {
             TestMessage = message;
+            Called.Set();
         }
 
         #endregion
