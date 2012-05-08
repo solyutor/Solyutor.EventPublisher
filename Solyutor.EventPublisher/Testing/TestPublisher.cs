@@ -10,5 +10,12 @@ namespace Solyutor.EventPublisher.Testing
         {
             
         }
+
+        public TestHandler<TMessage> RegisterTestHandler<TMessage>()
+        {
+            var result = new TestHandler<TMessage>();
+            Assignee.Subscribe(result);
+            return result;
+        }
     }
 }

@@ -5,22 +5,21 @@ using Solyutor.EventPublisher.Testing;
 namespace Solyutor.EventPublisher.Tests.Testing
 {
     [TestFixture]
-    public class TestingExtensionsFixture
+    public class TestPublisherTests
     {
+        public class FooMessage
+        {
+        }
+
         [Test]
         public void CreateTestHandlerFor_WhenCalled_CreatesTestHandlerAndAddsItsToPublisher()
         {
             var publisher = new TestPublisher();
 
-            var handler = publisher.CreateTestHandlerFor<FooMessage>();
-
+            var handler = publisher.RegisterTestHandler<FooMessage>();
 
             Assert.That(handler, Is.InstanceOf<TestHandler<FooMessage>>());
             Assert.That(publisher.Assignee.ResolveHandlersFor<FooMessage>().First(), Is.SameAs(handler));
         }
-    }
-
-    public class FooMessage
-    {
     }
 }
