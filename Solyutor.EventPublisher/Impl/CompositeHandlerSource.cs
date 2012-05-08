@@ -23,27 +23,49 @@ namespace Solyutor.EventPublisher.Impl
 
         public virtual IEnumerable<IHandler<TMessage>> ResolveHandlersFor<TMessage>()
         {
+            var copyOfsources = GetCopyOfSources();
+
+            return ResolveHandlersFromSources<TMessage>(copyOfsources);
+        }
+
+        private static IEnumerable<IHandler<TMessage>> ResolveHandlersFromSources<TMessage>(IEnumerable<IHandlerSource> sources)
+        {
             var result = new HashSet<IHandler<TMessage>>();
-            foreach (var handlerSource in _sources)
+            foreach (var handlerSource in sources)
             {
-                foreach (var handler in handlerSource.ResolveHandlersFor<TMessage>())
-                {
-                    result.Add(handler);
-                }
+                result.UnionWith(handlerSource.ResolveHandlersFor<TMessage>());
             }
             return result;
+        }
+
+        private IEnumerable<IHandlerSource> GetCopyOfSources()
+        {
+            //will return a copy of contained sources for the sake of thread safety. 
+            lock (_sources)
+            {
+                var copyOfsources = new IHandlerSource[_sources.Count];
+                _sources.CopyTo(copyOfsources, 0);
+                return copyOfsources;
+            }
         }
 
         #endregion
 
         public virtual void AddSource(IHandlerSource handlerSource)
         {
-            _sources.Add(handlerSource);
+            lock (_sources)
+            {
+                _sources.Add(handlerSource);
+            }
+            
         }
 
         public virtual void RemoveSource(IHandlerSource handlerSource)
         {
-            _sources.Remove(handlerSource);
+            lock (_sources)
+            {
+                _sources.Remove(handlerSource); 
+            }
         }
     }
 }
