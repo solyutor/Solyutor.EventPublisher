@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Castle.MicroKernel.Facilities;
+﻿using Castle.MicroKernel.Facilities;
 using Castle.MicroKernel.Registration;
 using Solyutor.EventPublisher.Impl;
 
@@ -8,56 +6,46 @@ namespace Solyutor.EventPublisher.Windsor.Facility
 {
     public class PublisherFacility : AbstractFacility
     {
-        private readonly IDispatcher _dispatcher;
-
-        public PublisherFacility()
-        {
-        }
-
-        public PublisherFacility(IDispatcher dispatcher)
-        {
-            _dispatcher = dispatcher;
-        }
-
         protected override void Init()
         {
-            RegisterAssignee();
+            AddHandlersResolver();
+            RegisterHandlerSources();
+            RegisterDispatcher();
+            RegisterPublisher();
+        }
 
+        private void AddHandlersResolver()
+        {
+            Kernel.Resolver.AddSubResolver(new HandlerSourceResolver(Kernel));
+        }
+
+        protected virtual void RegisterHandlerSources()
+        {
             Kernel.Register(
-                Component.For<IPublisher>()
-                .UsingFactoryMethod(CreatePublisher));
+                Component
+                    .For<CompositeHandlerSource, IHandlerSource>(),
+                Component
+                    .For<IHandlerSource>()
+                    .ImplementedBy<TransientSource>(),
+                Component
+                    .For<IAssignee, IHandlerSource>()
+                    .ImplementedBy<SimpleAssignee>());
         }
 
-        protected virtual IDispatcher ResolvePublishWay()
+        protected virtual void RegisterDispatcher()
         {
-            IDispatcher result = Kernel.HasComponent(typeof (IDispatcher)) ? Kernel.Resolve<IDispatcher>() : _dispatcher;
-
-            if (result == null)
-                throw new InvalidOperationException(
-                    "Publisher facility needs an instance of IDispatcher. Supply it using PublishFacility constructor or register it with container.");
-
-            return result;
-        }
-
-        protected virtual void RegisterAssignee()
-        {
-            if (Kernel.HasComponent(typeof (IAssignee))) return;
             Kernel.Register(
-                Component.For<IAssignee, IHandlerSource>()
-                .Instance(new SimpleAssignee())
-                .LifeStyle.Singleton);
+                Component
+                .For<IDispatcher>()
+                .ImplementedBy<SimpleDispatcher>());
         }
 
-        protected virtual IPublisher CreatePublisher()
+        protected virtual void RegisterPublisher()
         {
-            var publishWay = ResolvePublishWay();
-
-            var sources = new List<IHandlerSource>(Kernel.ResolveAll<IHandlerSource>()) {new TransientSource(Kernel)};
-            sources.AddRange(Kernel.ResolveAll<IAssignee>());
-
-            var compositeSource = new CompositeHandlerSource(sources);
-
-            return new Publisher(compositeSource, publishWay);
+            Kernel.Register(
+                Component
+                    .For<IPublisher>()
+                    .ImplementedBy<Publisher>());
         }
     }
 }

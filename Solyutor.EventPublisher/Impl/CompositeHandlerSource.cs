@@ -5,7 +5,7 @@ namespace Solyutor.EventPublisher.Impl
     public class CompositeHandlerSource : IHandlerSource
     {
         private readonly ISet<IHandlerSource> _sources;
-
+        
         public CompositeHandlerSource()
         {
             _sources = new HashSet<IHandlerSource>();
@@ -30,6 +30,7 @@ namespace Solyutor.EventPublisher.Impl
 
         private static IEnumerable<IHandler<TMessage>> ResolveHandlersFromSources<TMessage>(IEnumerable<IHandlerSource> sources)
         {
+            //returns a copy of handlers for the sake of thread safety.
             var result = new HashSet<IHandler<TMessage>>();
             foreach (var handlerSource in sources)
             {
@@ -40,7 +41,7 @@ namespace Solyutor.EventPublisher.Impl
 
         private IEnumerable<IHandlerSource> GetCopyOfSources()
         {
-            //will return a copy of contained sources for the sake of thread safety. 
+            //returns a copy of contained sources for the sake of thread safety.
             lock (_sources)
             {
                 var copyOfsources = new IHandlerSource[_sources.Count];
@@ -57,7 +58,6 @@ namespace Solyutor.EventPublisher.Impl
             {
                 _sources.Add(handlerSource);
             }
-            
         }
 
         public virtual void RemoveSource(IHandlerSource handlerSource)
