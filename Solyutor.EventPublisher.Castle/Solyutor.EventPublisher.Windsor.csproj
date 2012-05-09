@@ -57,7 +57,7 @@
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
     <Compile Include="Facility\AllTransientHandlers.cs" />
-    <Compile Include="Facility\HandlerSourceResolver.cs" />
+    <Compile Include="Facility\PublisherSpecificCollectionResolver.cs" />
     <Compile Include="Facility\PublisherFacility.cs" />
     <Compile Include="Facility\TransientSource.cs" />
     <Compile Include="ITransientHandler.cs" />

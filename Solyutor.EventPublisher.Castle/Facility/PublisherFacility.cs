@@ -16,7 +16,7 @@ namespace Solyutor.EventPublisher.Windsor.Facility
 
         private void AddHandlersResolver()
         {
-            Kernel.Resolver.AddSubResolver(new HandlerSourceResolver(Kernel));
+            Kernel.Resolver.AddSubResolver(new PublisherSpecificCollectionResolver(Kernel));
         }
 
         protected virtual void RegisterHandlerSources()
@@ -35,6 +35,9 @@ namespace Solyutor.EventPublisher.Windsor.Facility
         protected virtual void RegisterDispatcher()
         {
             Kernel.Register(
+                Component
+                .For<IDispatcher>()
+                .ImplementedBy<CompositeDispatcher>(),
                 Component
                 .For<IDispatcher>()
                 .ImplementedBy<SimpleDispatcher>());

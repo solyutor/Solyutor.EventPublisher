@@ -4,15 +4,15 @@ using Solyutor.EventPublisher.Impl;
 
 namespace Solyutor.EventPublisher.Windsor.Facility
 {
-    public class HandlerSourceResolver : CollectionResolver
+    public class PublisherSpecificCollectionResolver : CollectionResolver
     {
-        public HandlerSourceResolver(IKernel kernel) : base(kernel, true)
+        public PublisherSpecificCollectionResolver(IKernel kernel) : base(kernel, true)
         {
         }
 
         protected override bool CanSatisfy(System.Type itemType)
         {
-            return itemType == typeof(IHandlerSource) && base.CanSatisfy(itemType);
+            return (itemType == typeof(IHandlerSource) || itemType == typeof(IDispatcher)) && base.CanSatisfy(itemType);
         }
     }
 }
