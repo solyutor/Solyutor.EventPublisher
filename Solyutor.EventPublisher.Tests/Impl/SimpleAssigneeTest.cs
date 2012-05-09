@@ -36,10 +36,12 @@ namespace Solyutor.EventPublisher.Tests.Impl
             var assignee = new SimpleAssignee();
             var handler = new TestHandler();
             assignee.Subscribe(handler);
+            assignee.Subscribe(handler);
 
             var handlers = assignee.ResolveHandlersFor<TestMessage>();
 
             Assert.That(handlers, Has.Member(handler));
+            Assert.That(handlers.Count(), Is.EqualTo(1));
         }
 
         [Test]
@@ -48,11 +50,11 @@ namespace Solyutor.EventPublisher.Tests.Impl
             var assignee = new SimpleAssignee();
             var handler = new TestHandler();
             assignee.Subscribe(handler);
-            assignee.Subscribe(handler);
-            
+            assignee.Unsubscribe(handler);
+
             var handlers = new List<IHandler<TestMessage>>(assignee.ResolveHandlersFor<TestMessage>());
 
-            Assert.That(handlers.Count, Is.EqualTo(1));
+            Assert.That(handlers, Has.No.Member(handler));
         }
 
         [Test]
