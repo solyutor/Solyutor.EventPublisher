@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Solyutor.EventPublisher.Impl;
 using Solyutor.EventPublisher.Testing;
 
@@ -7,17 +8,17 @@ namespace Solyutor.EventPublisher.Tests.Impl
     [TestFixture]
     public class CompositeDispatcherTests
     {
-        public class DenySubdispatcher : ISubdispatcher
+        public class DenySubdispatcher : IDispatcher
         {
-            public bool TryInvoke<TMessage>(TMessage message, IHandler<TMessage> handler)
+            public bool Invoke<TMessage>(TMessage message, IHandler<TMessage> handler)
             {
                 return false;
             }
         }
 
-        public class SuccessfulDispatcher : ISubdispatcher
+        public class SuccessfulDispatcher : IDispatcher
         {
-            public bool TryInvoke<TMessage>(TMessage message, IHandler<TMessage> handler)
+            public bool Invoke<TMessage>(TMessage message, IHandler<TMessage> handler)
             {
                 handler.Handle(message);
                 return true;
@@ -30,7 +31,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
             var denyDispatcher = new DenySubdispatcher();
             var successDispatcher = new SuccessfulDispatcher();
 
-            var dispatcher = new CompositeDispatcher(new ISubdispatcher[] {denyDispatcher, successDispatcher});
+            var dispatcher = new CompositeDispatcher(new IDispatcher[] {denyDispatcher, successDispatcher});
 
             var testHandler = new TestHandler<TestMessage>();
             dispatcher.Invoke(new TestMessage(), testHandler);
@@ -44,7 +45,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
             var successDispatcher1 = new SuccessfulDispatcher();
             var successDispatcher2 = new SuccessfulDispatcher();
 
-            var dispatcher = new CompositeDispatcher(new ISubdispatcher[] { successDispatcher1, successDispatcher2 });
+            var dispatcher = new CompositeDispatcher(new IDispatcher[] { successDispatcher1, successDispatcher2 });
 
             var testHandler = new TestHandler<TestMessage>();
             dispatcher.Invoke(new TestMessage(), testHandler);
@@ -56,6 +57,8 @@ namespace Solyutor.EventPublisher.Tests.Impl
         public void Should_throw_if_cannot_dispatch_message()
         {
             var dispatcher = new CompositeDispatcher(new[] {new DenySubdispatcher()});
+
+            Assert.Throws<InvalidOperationException>(delegate { dispatcher.Invoke(new TestMessage(), new TestHandler<TestMessage>()); });
         }
     }
 }

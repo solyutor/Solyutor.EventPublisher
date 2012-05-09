@@ -2,16 +2,22 @@ using System.Threading;
 
 namespace Solyutor.EventPublisher.Impl
 {
-    public class SynchronizationContextDispatcher : IDispatcher
+    public class SynchronizationContextDispatcher : RuleBasedSubdispatcher
     {
         private readonly SynchronizationContext _synchronizationContext;
 
         public SynchronizationContextDispatcher(SynchronizationContext synchronizationContext)
+            : this(synchronizationContext, new Rule((message, handler) => true))
+        {
+        }
+
+        public SynchronizationContextDispatcher(SynchronizationContext synchronizationContext, params IDispatchRule[] rules)
+            : base(rules)
         {
             _synchronizationContext = synchronizationContext;
         }
 
-        public void Invoke<TMessage>(TMessage message, IHandler<TMessage> handler)
+        protected override void IntervalInvoke<TMessage>(TMessage message, IHandler<TMessage> handler)
         {
             _synchronizationContext.Post(x => handler.Handle(message), null);
         }
@@ -21,7 +27,12 @@ namespace Solyutor.EventPublisher.Impl
         where TSynchornizationContext : SynchronizationContext, new()
     {
         public SynchronizationContextDispatcher()
-            : base(new TSynchornizationContext())
+            : base(new TSynchornizationContext(), new Rule((message, handler) => true))
+        {
+        }
+
+        public SynchronizationContextDispatcher(params IDispatchRule[] rules)
+            : base(new TSynchornizationContext(), new Rule((message, handler) => true))
         {
         }
     }

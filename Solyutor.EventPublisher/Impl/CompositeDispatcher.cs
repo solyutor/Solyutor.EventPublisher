@@ -9,9 +9,9 @@ namespace Solyutor.EventPublisher.Impl
             "For the message {0} of type {1} and handler {2} of type {3} was not found appropriate subdispatcher. "+
             "Please configure subdispatcheres to be able to perform invocation.";
         
-        private readonly IEnumerable<ISubdispatcher> _subdispatchers;
+        private readonly IEnumerable<IDispatcher> _subdispatchers;
 
-        public CompositeDispatcher(IEnumerable<ISubdispatcher> subdispatchers)
+        public CompositeDispatcher(IEnumerable<IDispatcher> subdispatchers)
         {
             if(subdispatchers == null)
                 throw new ArgumentNullException("subdispatchers");
@@ -19,11 +19,11 @@ namespace Solyutor.EventPublisher.Impl
             _subdispatchers = subdispatchers;
         }
 
-        public void Invoke<TMessage>(TMessage message, IHandler<TMessage> handler)
+        public bool Invoke<TMessage>(TMessage message, IHandler<TMessage> handler)
         {
             foreach (var subdispatcher in _subdispatchers)
             {
-                if(subdispatcher.TryInvoke(message, handler)) return;
+                if(subdispatcher.Invoke(message, handler)) return true;
             }
 
             var errorMessage = string.Format(ErrorTemplate, message, message.GetType(), handler, handler.GetType());

@@ -1,8 +1,18 @@
 ﻿namespace Solyutor.EventPublisher.Impl
 {
-    public class SimpleDispatcher : IDispatcher
+    public class SimpleDispatcher : RuleBasedSubdispatcher
     {
-        public virtual void Invoke<TMessage>(TMessage message, IHandler<TMessage> handler)
+        public SimpleDispatcher() : base(new Rule((message, handler) => true))
+        {
+            
+        }
+
+        public SimpleDispatcher(params IDispatchRule[] rules) : base(rules)
+        {
+            
+        }
+
+        protected override void IntervalInvoke<TMessage>(TMessage message, IHandler<TMessage> handler)
         {
             handler.Handle(message);
         }

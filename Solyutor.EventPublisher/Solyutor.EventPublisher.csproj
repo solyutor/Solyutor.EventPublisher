@@ -57,8 +57,9 @@
     <Compile Include="Impl\IDispatchRule.cs" />
     <Compile Include="Impl\IHandlerSource.cs" />
     <Compile Include="Impl\IDispatcher.cs" />
-    <Compile Include="Impl\ISubdispatcher.cs" />
     <Compile Include="Impl\Publisher.cs" />
+    <Compile Include="Impl\Rule.cs" />
+    <Compile Include="Impl\RuleBasedSubdispatcher.cs" />
     <Compile Include="Impl\SimpleAssignee.cs" />
     <Compile Include="Impl\SimpleDispatcher.cs" />
     <Compile Include="Impl\SynchronizationContextDispatcher.cs" />
