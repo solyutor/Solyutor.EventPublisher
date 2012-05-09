@@ -4,7 +4,10 @@ using System.Linq;
 
 namespace Solyutor.EventPublisher.Impl
 {
-    public class SimpleAssignee : IAssignee
+    /// <summary>
+    /// Simple threadsafe implementation of <see cref="IAssignee"/>. It serves as <see cref="IHandlerSource"/> for a <see cref="Publisher"/>.
+    /// </summary>
+    public class SimpleAssignee : IAssignee, IHandlerSource
     {
         private readonly object _latch;
         private readonly Dictionary<Type, ISet<object>> _storeHandlers;
@@ -17,6 +20,12 @@ namespace Solyutor.EventPublisher.Impl
             _latch = new object();
         }
 
+        /// <summary>
+        /// Subscribes handler to events.
+        /// </summary>
+        /// <param name="handler">Object to subscribe.
+        /// <remarks>If handler already subscribed impelement <see cref="IHandler{TMessage}"/> it will be silently ignored.</remarks>
+        /// </param>
         public virtual void Subscribe(object handler)
         {
             var interfaces = GetImplementedHandlers(handler);
@@ -40,6 +49,12 @@ namespace Solyutor.EventPublisher.Impl
             }
         }
 
+        /// <summary>
+        /// Unsubscribes handler from events. 
+        /// </summary>
+        /// <param name="handler">Object to unsubscirbed
+        /// <remarks>If handler already unsubscribed it will be silently ignored.</remarks>
+        /// </param>
         public virtual void Unsubscribe(object handler)
         {
             var interfaces = GetImplementedHandlers(handler);

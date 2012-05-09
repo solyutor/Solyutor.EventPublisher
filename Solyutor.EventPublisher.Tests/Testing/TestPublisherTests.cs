@@ -19,7 +19,7 @@ namespace Solyutor.EventPublisher.Tests.Testing
             var handler = publisher.RegisterTestHandler<FooMessage>();
 
             Assert.That(handler, Is.InstanceOf<TestHandler<FooMessage>>());
-            Assert.That(publisher.Assignee.ResolveHandlersFor<FooMessage>().First(), Is.SameAs(handler));
+            Assert.That(publisher.GetHandlerSource().ResolveHandlersFor<FooMessage>().First(), Is.SameAs(handler));
         }
     }
 }

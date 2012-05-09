@@ -4,8 +4,16 @@ namespace Solyutor.EventPublisher.Testing
 {
     public class TestPublisher : Publisher
     {
-        public IAssignee Assignee { get { return (IAssignee) HandlerSource; } }
-        
+        public IAssignee GetAssignee()
+        {
+            return (IAssignee) HandlerSource;
+        }
+
+        public IHandlerSource GetHandlerSource()
+        {
+            return HandlerSource;
+        }
+
         public TestPublisher() : base(new SimpleAssignee(), new SimpleDispatcher())
         {
             
@@ -14,7 +22,7 @@ namespace Solyutor.EventPublisher.Testing
         public TestHandler<TMessage> RegisterTestHandler<TMessage>()
         {
             var result = new TestHandler<TMessage>();
-            Assignee.Subscribe(result);
+            GetAssignee().Subscribe(result);
             return result;
         }
     }
