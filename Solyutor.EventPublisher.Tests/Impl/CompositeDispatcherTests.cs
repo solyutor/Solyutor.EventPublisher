@@ -51,5 +51,11 @@ namespace Solyutor.EventPublisher.Tests.Impl
 
             Assert.That(testHandler.WasCalled, Is.EqualTo(1));
         }
+
+        [Test]
+        public void Should_throw_if_cannot_dispatch_message()
+        {
+            var dispatcher = new CompositeDispatcher(new[] {new DenySubdispatcher()});
+        }
     }
 }
