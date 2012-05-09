@@ -81,8 +81,5 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="BeforeBuild">
-    <Exec Condition="!Exists('$(SolutionDir)\SolutionVersion.cs')" Command="echo //DO NOT EDIT &gt; $(SolutionDir)\SolutionVersion.cs" />
-  </Target>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
 </Project>
