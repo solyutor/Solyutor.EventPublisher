@@ -68,6 +68,7 @@
     <Compile Include="Impl\SimplePublishWayTest.cs" />
     <Compile Include="Impl\SynchronizationContextPublishWayTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Impl\CompositeDispatcherTests.cs" />
     <Compile Include="Testing\TestPublisherTests.cs" />
     <Compile Include="Testing\TestListnerTest.cs" />
   </ItemGroup>

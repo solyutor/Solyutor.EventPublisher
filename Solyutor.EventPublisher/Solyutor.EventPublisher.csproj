@@ -52,7 +52,9 @@
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
     <Compile Include="IAssignee.cs" />
+    <Compile Include="Impl\CompositeDispatcher.cs" />
     <Compile Include="Impl\CompositeHandlerSource.cs" />
+    <Compile Include="Impl\IDispatchRule.cs" />
     <Compile Include="Impl\IHandlerSource.cs" />
     <Compile Include="Impl\IDispatcher.cs" />
     <Compile Include="Impl\ISubdispatcher.cs" />
