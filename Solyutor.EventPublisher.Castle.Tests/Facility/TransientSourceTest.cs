@@ -31,5 +31,22 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
 
             Assert.That(handlers.Count(), Is.EqualTo(2));
         }
+
+        [Test]
+        public void Registration_helper_methods_should_properly_register_handlers()
+        {
+            var windsor = new WindsorContainer();
+            windsor.Register(
+                Classes
+                    .FromThisAssembly()
+                    .IncludeNonPublicTypes()
+                    .Where(type => type.IsHandler())
+                    .WithServiceAllHandlers());
+
+            var handlers = windsor.ResolveAll<IHandler<Message>>();
+
+            Assert.That(handlers.Count(), Is.EqualTo(2));
+        }
+
     }
 }

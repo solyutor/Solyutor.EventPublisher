@@ -17,11 +17,26 @@ namespace Solyutor.EventPublisher.Sample
 
             var windsor = new WindsorContainer();
 
-            windsor.Register(AllHandlers.FromCurrentAssembly());
+            windsor.Register(
+                Classes
+                    .FromThisAssembly()
+                    .Where(type => type.IsHandler() && type != typeof(MainForm))
+                    .WithServiceAllHandlers()
+                    .LifestyleTransient());
 
-            windsor.Register(Component.For<MainForm>().LifeStyle.Singleton,
-                Component.For<IHellowStrategy>().ImplementedBy<HellowStrategy>());
-
+            windsor.Register(
+                Component
+                    .For<IDispatcher>()
+                    .ImplementedBy<SynchronizationContextDispatcher<WindowsFormsSynchronizationContext>>()
+                    .LifestyleSingleton(),
+                Component
+                    .For<MainForm>()
+                    .LifestyleSingleton(),
+                Component
+                    .For<IHellowStrategy>()
+                    .ImplementedBy<HellowStrategy>()
+                    .LifestyleSingleton());
+                
             windsor.AddFacility<PublisherFacility>();
 
 
