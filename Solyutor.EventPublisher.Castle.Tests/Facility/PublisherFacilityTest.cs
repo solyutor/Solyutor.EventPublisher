@@ -44,7 +44,7 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         [Test]
         public void Facility_throws_if_no_publishway_were_supplied()
         {
-            //Assert.DoesNotThrow(() => _windsor.Resolve<IPublisher>());
+            Assert.DoesNotThrow(() => _windsor.Resolve<IPublisher>());
         }
 
         private void Assert_facility_configured_to_send_message_to_transient_and_non_transient_handlers()
@@ -52,7 +52,7 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
             var handler = new TestHandler();
 
             _windsor.Resolve<IAssignee>().Subscribe(handler);
-            _windsor.Register(Component.For<ITransientHandler<Message>>().ImplementedBy<TestTransientHandler>());
+            _windsor.Register(Component.For<IHandler<Message>>().ImplementedBy<TestTransientHandler>());
 
             var publisher = _windsor.Resolve<IPublisher>();
             var message = new Message();

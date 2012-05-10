@@ -26,7 +26,7 @@ namespace Solyutor.EventPublisher.Windsor.Facility
                     .For<CompositeHandlerSource, IHandlerSource>(),
                 Component
                     .For<IHandlerSource>()
-                    .ImplementedBy<TransientSource>(),
+                    .ImplementedBy<WindsorSource>(),
                 Component
                     .For<IAssignee, IHandlerSource>()
                     .ImplementedBy<SimpleAssignee>());

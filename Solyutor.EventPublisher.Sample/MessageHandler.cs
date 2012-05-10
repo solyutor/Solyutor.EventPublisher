@@ -1,8 +1,6 @@
-﻿using Solyutor.EventPublisher.Windsor;
-
-namespace Solyutor.EventPublisher.Sample
+﻿namespace Solyutor.EventPublisher.Sample
 {
-    public class MessageHandler : ITransientHandler<HelloMessage>
+    public class MessageHandler : IHandler<HelloMessage>
     {
         private readonly IHellowStrategy _hellowStrategy;
 

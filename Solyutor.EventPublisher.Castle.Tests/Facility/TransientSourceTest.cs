@@ -2,7 +2,7 @@
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using NUnit.Framework;
-using Solyutor.EventPublisher.Windsor;
+using Solyutor.EventPublisher.Testing;
 using Solyutor.EventPublisher.Windsor.Facility;
 
 namespace Solyutor.EventPublisher.Castle.Tests.Facility
@@ -15,15 +15,21 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         {
             var windsor = new WindsorContainer();
             windsor.Register(
-                Component.For<ITransientHandler<Message>>()
-                    .ImplementedBy<TestTransientHandler>());
+                Component
+                    .For<IHandler<Message>>()
+                    .ImplementedBy<TestHandler<Message>>()
+                    .LifestyleSingleton(),
+                Component
+                    .For<IHandler<Message>>()
+                    .ImplementedBy<TestHandler<Message>>()
+                    .Named("transient")
+                    .LifestyleTransient());
             
-            var source = new TransientSource(windsor.Kernel);
+            var source = new WindsorSource(windsor.Kernel);
 
             var handlers = source.ResolveHandlersFor<Message>();
 
-            Assert.That(handlers.OfType<ITransientHandler<Message>>().Count(), Is.EqualTo(1));
-
+            Assert.That(handlers.Count(), Is.EqualTo(2));
         }
     }
 }

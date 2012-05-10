@@ -1,8 +1,9 @@
-using Solyutor.EventPublisher.Windsor;
+using System;
 
 namespace Solyutor.EventPublisher.Castle.Tests
 {
-    public class TestTransientHandler : ITransientHandler<Message>
+    [Obsolete("Use TestHandler<TMessage> instead")]
+    public class TestTransientHandler : IHandler<Message>
     {
         public Message Message;
         public static Message StaticMessage;

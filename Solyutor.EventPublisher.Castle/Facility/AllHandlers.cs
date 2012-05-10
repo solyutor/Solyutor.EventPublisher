@@ -5,7 +5,7 @@ using Castle.MicroKernel.Registration;
 
 namespace Solyutor.EventPublisher.Windsor.Facility
 {
-    public static class AllTransientHandlers
+    public static class AllHandlers
     {
         public static IRegistration[] FromCurrentAssembly()
         {
@@ -17,7 +17,7 @@ namespace Solyutor.EventPublisher.Windsor.Facility
             var result = new List<IRegistration>();
             foreach (var type in assembly.GetTypes())
             {
-                var services = type.TransientHandlerServices();
+                var services = type.HandlerServices();
 
                 if (services.Length == 0) continue;
 
@@ -37,13 +37,21 @@ namespace Solyutor.EventPublisher.Windsor.Facility
         }
 
 
-        public static Type[] TransientHandlerServices(this Type self)
+        public static Type[] HandlerServices(this Type self)
+        {
+            return self.ImplementationOfGenericInterface(typeof(IHandler<>));
+        }
+
+        public static Type[] ImplementationOfGenericInterface(this Type self, Type genericInterface)
         {
             return self.FindInterfaces(
                 (@interface, nomatter) => @interface.IsGenericType &&
-                                          @interface.GetGenericTypeDefinition() == typeof (ITransientHandler<>), null);
+                                          @interface.GetGenericTypeDefinition() == genericInterface, null);
         }
 
-
+        public static bool IsHandler(this Type self)
+        {
+            return self.IsGenericType && self.GetGenericTypeDefinition() == typeof(IHandler<>);
+        }
     }
 }

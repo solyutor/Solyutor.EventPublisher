@@ -3,7 +3,6 @@ using Castle.Core;
 using Castle.Windsor;
 using NUnit.Framework;
 using SharpTestsEx;
-using Solyutor.EventPublisher.Windsor;
 using Solyutor.EventPublisher.Windsor.Facility;
 
 namespace Solyutor.EventPublisher.Castle.Tests.Facility
@@ -16,7 +15,7 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         {
             var windsor = new WindsorContainer();
 
-            windsor.Register(AllTransientHandlers.FromCurrentAssembly());
+            windsor.Register(AllHandlers.FromCurrentAssembly());
 
             AssertRegistration(windsor);
         }
@@ -26,7 +25,7 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         {
             var windsor = new WindsorContainer();
 
-            windsor.Register(AllTransientHandlers.From(Assembly.GetExecutingAssembly()));
+            windsor.Register(AllHandlers.From(Assembly.GetExecutingAssembly()));
 
             AssertRegistration(windsor);
 
@@ -37,7 +36,7 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         {
             var windsor = new WindsorContainer();
 
-            windsor.Register(AllTransientHandlers.From(new[] {Assembly.GetExecutingAssembly()}));
+            windsor.Register(AllHandlers.From(new[] {Assembly.GetExecutingAssembly()}));
 
             AssertRegistration(windsor);
 
@@ -46,16 +45,16 @@ namespace Solyutor.EventPublisher.Castle.Tests.Facility
         private static void AssertRegistration(WindsorContainer windsor)
         {
             windsor.Kernel.Satisfy(kernel =>
-                                   kernel.HasComponent(typeof(ITransientHandler<Message>)) &&
-                                   kernel.GetHandler(typeof(ITransientHandler<Message>)).ComponentModel.LifestyleType ==
+                                   kernel.HasComponent(typeof(IHandler<Message>)) &&
+                                   kernel.GetHandler(typeof(IHandler<Message>)).ComponentModel.LifestyleType ==
                                    LifestyleType.Transient &&
-                                   kernel.HasComponent(typeof(ITransientHandler<int>)) &&
-                                   kernel.HasComponent(typeof(ITransientHandler<string>))
+                                   kernel.HasComponent(typeof(IHandler<int>)) &&
+                                   kernel.HasComponent(typeof(IHandler<string>))
                 );
         }
     }
 
-    public class MultiHandler : ITransientHandler<int>, ITransientHandler<string>
+    public class MultiHandler : IHandler<int>, IHandler<string>
     {
         #region ITransientHandler<int> Members
 

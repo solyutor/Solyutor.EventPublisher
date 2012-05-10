@@ -56,11 +56,10 @@
     <Compile Include="..\SolutionVersion.cs">
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
-    <Compile Include="Facility\AllTransientHandlers.cs" />
+    <Compile Include="Facility\AllHandlers.cs" />
     <Compile Include="Facility\PublisherSpecificCollectionResolver.cs" />
     <Compile Include="Facility\PublisherFacility.cs" />
-    <Compile Include="Facility\TransientSource.cs" />
-    <Compile Include="ITransientHandler.cs" />
+    <Compile Include="Facility\WindsorSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
