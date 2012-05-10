@@ -8,28 +8,12 @@ namespace Solyutor.EventPublisher.Tests.Impl
     [TestFixture]
     public class CompositeDispatcherTests
     {
-        public class DenySubdispatcher : IDispatcher
-        {
-            public bool Invoke<TMessage>(TMessage message, IHandler<TMessage> handler)
-            {
-                return false;
-            }
-        }
-
-        public class SuccessfulDispatcher : IDispatcher
-        {
-            public bool Invoke<TMessage>(TMessage message, IHandler<TMessage> handler)
-            {
-                handler.Handle(message);
-                return true;
-            }
-        }
         
         [Test]
         public void Invokes_until_appropriate_subdispatcher_found()
         {
-            var denyDispatcher = new DenySubdispatcher();
-            var successDispatcher = new SuccessfulDispatcher();
+            var denyDispatcher = new SimpleDispatcher(new Rule((message, handler) => false));
+            var successDispatcher = new SimpleDispatcher(new Rule((message, handler) => true));
 
             var dispatcher = new CompositeDispatcher(new IDispatcher[] {denyDispatcher, successDispatcher});
 
@@ -42,8 +26,8 @@ namespace Solyutor.EventPublisher.Tests.Impl
         [Test]
         public void Invokation_should_not_be_perfomed_twice()
         {
-            var successDispatcher1 = new SuccessfulDispatcher();
-            var successDispatcher2 = new SuccessfulDispatcher();
+            var successDispatcher1 = new SimpleDispatcher(new Rule((message, handler) => true));
+            var successDispatcher2 = new SimpleDispatcher(new Rule((message, handler) => true));
 
             var dispatcher = new CompositeDispatcher(new IDispatcher[] { successDispatcher1, successDispatcher2 });
 
@@ -56,7 +40,7 @@ namespace Solyutor.EventPublisher.Tests.Impl
         [Test]
         public void Should_throw_if_cannot_dispatch_message()
         {
-            var dispatcher = new CompositeDispatcher(new[] {new DenySubdispatcher()});
+            var dispatcher = new CompositeDispatcher(new[] {new SimpleDispatcher(new Rule((message, handler) => false))});
 
             Assert.Throws<InvalidOperationException>(delegate { dispatcher.Invoke(new TestMessage(), new TestHandler<TestMessage>()); });
         }
